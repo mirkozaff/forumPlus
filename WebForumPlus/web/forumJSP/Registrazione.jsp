@@ -18,23 +18,14 @@
 
     <!-- Custom styles for this template -->
     <link href="../forumPlusCSS/registrazione.css" rel="stylesheet">
-     <script language="JavaScript">
-function controlla() {
-var f = document.Mioform;
-if (f.pass1.value != f.pass2.value) {
-alert("Le due Password non sono uguali.");
-return false;
-}else{return true;}
-}
-</script>
-    
+
   </head>
 
   <body>
 
     <div class="container">
-
-      <form onSubmit="controlla()" action="Login.jsp" class="form-signin" name="Mioform">
+      <!-- quando si clicca "registrati" viene chiamata la funzione controlla() che vede se le due password sono uguali-->
+      <form onSubmit="controlla()" action="" class="form-signin" name="Mioform">
         <h2 class="titolo">Inserisci i tuoi dati</h2>
         <label>Inserisci il tuo indirizzo email</label>
         <input type="text" class="form-control" placeholder="Email address" required autofocus>
@@ -51,5 +42,6 @@ return false;
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/JavaScript" src="../forumPlusJS/passw_uguali.js"></script>
   </body>
 </html>
