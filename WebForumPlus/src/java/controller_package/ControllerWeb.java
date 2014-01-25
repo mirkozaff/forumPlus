@@ -1,6 +1,10 @@
 package controller_package;
 
+import db_package.DBmanager;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -10,10 +14,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import utility_package.User;
+import utility_package.Variabili;
 
 
 @WebServlet(name = "ControllerWeb", urlPatterns = {"/ControllerWeb"})
 public class ControllerWeb extends HttpServlet {
+    
+    private DBmanager manager;
+    
+    @Override
+    public void init() throws ServletException {
+        // inizializza il DBManager dagli attributi di Application
+        this.manager = (DBmanager)super.getServletContext().getAttribute("dbmanager");
+    }
 
     private void forward(HttpServletRequest request, HttpServletResponse response, String page)
             throws ServletException, IOException {
@@ -24,25 +37,28 @@ public class ControllerWeb extends HttpServlet {
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         
-        String op = request.getParameter("op");
+        String op = request.getParameter(Variabili.OP);
         HttpSession session = request.getSession(true);
-        User u = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute(Variabili.USER);
         
-        if ((u==null || op==null) && !"login".equals(op)){
-            forward(request,response,"/login.jsp");
+        if ((user == null || op == null) && !Variabili.LOGIN.equals(op)){
+            forward(request,response,"/Login.jsp");
             return;
         }       
-        if ("login".equals(op) ){
+        if (Variabili.LOGIN.equals(op) ){
             
-            u = new User(request.getParameter("name"));
-            if (u==null){ //|| ! u.checkPassword(request.getParameter("password")){
-                forward(request,response,"/login.jsp");
+            String username = request.getParameter(Variabili.USERNAME);
+            String password = request.getParameter(Variabili.PASSWORD);
+            
+            user = new User(username);
+            if ( user == null || !manager.authenticate(username, password)){
+                forward(request,response,"/Login.jsp");
             }
             else{
-                session.setAttribute("user",u);
-                forward(request,response,"/home.jsp");
+                session.setAttribute(Variabili.USER, user);
+                forward(request,response,"/Home.jsp");
             }
             return;
          }
@@ -60,7 +76,11 @@ public class ControllerWeb extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControllerWeb.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -74,7 +94,11 @@ public class ControllerWeb extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControllerWeb.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

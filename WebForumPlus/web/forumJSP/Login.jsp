@@ -32,16 +32,18 @@
 
     <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" action="servlet" method="POST" name="dati">
+        <input type="hidden" name="op" value="login">
         <h2 class="form-signin-heading centra-titolo">Login</h2>
-        <input type="text" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
+        <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
         <label>
         <a href="">Hai dimenticato la password?</a>
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
-        <form action="Registrazione.jsp" class="form-signin">
+        <form action="Registrazione.jsp" class="form-signin" method="POST">
+            <input type="hidden" name="op" value="registrazione">
             <label>Se non sei gia registrato</label>
             <button class="btn btn-lg btn-success btn-block" type="submit">Registrati</button>
         </form>

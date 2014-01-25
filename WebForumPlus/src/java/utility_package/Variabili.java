@@ -13,7 +13,7 @@ public class Variabili {
     
     public static final String PATH_GROUPS = "/WebForum/groups/";
     
-   public static final String PATH_PROFILE_IMG = "/WebForum/profileIMG/";
+    public static final String PATH_PROFILE_IMG = "/WebForum/profileIMG/";
     
     public static final String OP = "op";
     
@@ -22,6 +22,14 @@ public class Variabili {
     public static final String AVATAR_IMG = "img_avatar";
     
     public static final String PDF = "pdf";
+    
+    public static final String LOGIN = "login";
+    
+    public static final String USERNAME = "username";
+    
+    public static final String PASSWORD = "password";
+    
+    public static final String USER = "user";
     
     public static final String TESTO = "testo";
     
