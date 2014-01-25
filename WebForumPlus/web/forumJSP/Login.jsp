@@ -40,8 +40,11 @@
         <a href="">Hai dimenticato la password?</a>
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <button onclick="window.location.href='Registrazione.jsp'" class="btn btn-lg btn-success btn-block" type="submit">Registrati</button>
       </form>
+        <form action="Registrazione.jsp" class="form-signin">
+            <label>Se non sei gia registrato</label>
+            <button class="btn btn-lg btn-success btn-block" type="submit">Registrati</button>
+        </form>
 
     </div> <!-- /container -->
 
