@@ -58,7 +58,7 @@ public class ControllerWeb extends HttpServlet {
             }
             else{
                 session.setAttribute(Variabili.USER, user);
-                forward(request,response,"/Home.jsp");
+                forward(request,response, "HomePage.jsp");
             }
             return;
          }
