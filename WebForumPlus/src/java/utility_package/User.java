@@ -7,7 +7,8 @@ public class User {
     public static String password;
     public static String imageURL;
 
-    public User() {
+    public User(String name) {
+        this.name = name;
     }
 
     public static String getImageURL() {
