@@ -43,11 +43,11 @@ public class ControllerWeb extends HttpServlet {
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute(Variabili.USER);
         
-        if ((user == null || op == null) && !Variabili.LOGIN.equals(op)){
+        if((user == null || op == null) && !Variabili.LOGIN.equals(op)){
             forward(request,response,"/forumJSP/Login.jsp");
             return;
         }       
-        if (Variabili.LOGIN.equals(op) ){
+        if(Variabili.LOGIN.equals(op) ){
             
             String username = request.getParameter(Variabili.USERNAME);
             String password = request.getParameter(Variabili.PASSWORD);
@@ -60,7 +60,20 @@ public class ControllerWeb extends HttpServlet {
                 forward(request,response, "/forumJSP/HomePage.jsp");
             }
             return;
-         }
+        }
+        if(Variabili.REG.equals(op)){
+            String username = request.getParameter(Variabili.USERNAME);
+            String password = request.getParameter(Variabili.PASSWORD);
+            String email = request.getParameter(Variabili.EMAIL);
+            manager.registrazione(username, password, email);
+            user = manager.caricaBeanUtente(username, password);
+            user.setUsername(username);
+            user.setPassword(password);
+            session.setAttribute(Variabili.USER, user);
+            forward(request,response, "/forumJSP/HomePage.jsp");
+            return;
+       }
+    return;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

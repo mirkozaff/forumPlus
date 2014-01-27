@@ -424,28 +424,42 @@ public class DBmanager implements Serializable{
         return numPost;
      }
      
-     public String ultimaDataPDF(String gname, String gadmin)throws SQLException{
-        
-        String ultimaData = "";
-        PreparedStatement stm = con.prepareStatement("SELECT data FROM post WHERE gname= ? AND gadmin = ?");
+    public String ultimaDataPDF(String gname, String gadmin)throws SQLException{
+
+       String ultimaData = "";
+       PreparedStatement stm = con.prepareStatement("SELECT data FROM post WHERE gname= ? AND gadmin = ?");
+       try{
+           stm.setString(1, gname);
+           stm.setString(2, gadmin);
+           ResultSet rs = stm.executeQuery();
+           try{
+               while(rs.next()){
+                   ultimaData = rs.getString("DATA");
+               }
+           } finally {
+           rs.close();
+           }
+       }finally {
+        stm.close();
+       } 
+       return ultimaData;
+    }
+
+    public void registrazione(String username, String password, String email) throws SQLException{
+        PreparedStatement stm = con.prepareStatement("INSERT INTO utenti VALUES (?,?,?");    
         try{
-            stm.setString(1, gname);
-            stm.setString(2, gadmin);
+            stm.setString(1, username);
+            stm.setString(2, password);
+            stm.setString(3, email);
             ResultSet rs = stm.executeQuery();
-            try{
-                while(rs.next()){
-                    ultimaData = rs.getString("DATA");
-                }
-            } finally {
-            rs.close();
-            }
         }finally {
-         stm.close();
-        } 
-        return ultimaData;
-     }
-      public User caricaBeanUtente(String username, String password) throws SQLException{
-          User user = new User();
+            stm.close();
+        }
+    }
+    
+    public User caricaBeanUtente(String username, String password) throws SQLException{
+        
+        User user = new User();
         PreparedStatement stm = con.prepareStatement("SELECT URL_IMAGE,MODERATORE FROM utenti WHERE name=? AND password=?");
         try{
             stm.setString(1, username);
@@ -464,5 +478,5 @@ public class DBmanager implements Serializable{
             stm.close();
         }
         return user;
-     }     
+    }     
 }
