@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import utility_package.Post;
+import utility_package.User;
 
 
 public class DBmanager implements Serializable{
@@ -35,6 +36,7 @@ public class DBmanager implements Serializable{
     }
     public boolean authenticate(String name, String password) throws SQLException{
         PreparedStatement stm = con.prepareStatement("SELECT * FROM utenti WHERE name= ? AND password = ?");
+        if(name != null && password != null){
         try{
             stm.setString(1, name);
             stm.setString(2, password);
@@ -50,7 +52,9 @@ public class DBmanager implements Serializable{
             }
         }finally {
          stm.close();
-        }   
+        } 
+        } 
+        return false;
     }
      public void listagruppi(String name, ArrayList<String> listagruppi, ArrayList<String> listaadmin ) throws SQLException{
          
@@ -440,4 +444,25 @@ public class DBmanager implements Serializable{
         } 
         return ultimaData;
      }
+      public User caricaBeanUtente(String username, String password) throws SQLException{
+          User user = new User();
+        PreparedStatement stm = con.prepareStatement("SELECT URL_IMAGE,MODERATORE FROM utenti WHERE name=? AND password=?");
+        try{
+            stm.setString(1, username);
+            stm.setString(2, password);
+            ResultSet rs = stm.executeQuery();
+            try{
+               rs.next();
+               String url_image = rs.getString("URL_IMAGE");
+               boolean moderatore = rs.getBoolean("MODERATORE");
+               user.setImageURL(url_image);
+               user.setModeratore(moderatore);
+            } finally {
+                rs.close();
+            }
+        }finally {
+            stm.close();
+        }
+        return user;
+     }     
 }

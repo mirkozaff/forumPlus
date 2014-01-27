@@ -32,7 +32,7 @@
 
     <div class="container">
 
-      <form class="form-signin" action="servlet" method="POST" name="dati">
+      <form class="form-signin" action="/Controller" method="POST" name="dati">
         <input type="hidden" name="op" value="login">
         <h2 class="form-signin-heading centra-titolo">Login</h2>
         <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>

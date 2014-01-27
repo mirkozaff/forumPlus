@@ -1,0 +1,104 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25-gen-2014, 12.00.37
+    Author     : giovanni
+*/
+body {
+  min-height: 2000px;
+  padding-top: 70px;
+  background-color: #eee;
+  background-image: url(../forumIMG/22-sfondo-multicolori.jpg);
+   overflow: hidden;
+}
+
+.badge{
+  color: 428bca;
+  background-color: #b3d0e9;
+}
+
+.navbar-default{
+ background-color: #b3d0e9;
+}
+
+.btnmio{
+ width: 200px;
+}
+
+.btn-right{
+    text-align:right;
+}
+
+.centraverticale {
+margin-top: 10%;
+}
+.colore-caselle {
+  background-color: #b3d0e9;
+}
+.contenitore-azzurro {
+    border-radius: 20px;
+    background-color: #b3d0e9;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+.centra {
+    text-align:center;
+}
+.inlinea {
+    display: inline-block;
+}
+.table-cell-middle {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.div_testo {
+    height: 245px;
+    padding-left: 20px;
+}
+.div_bottoni {
+     text-align: center;
+     margin-top: 15%;
+}
+.div_bottoni>button {
+    width: 30%;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 200%;
+}
+.margine-top {
+    margin-top: 20px;
+}
+.div-inviti {
+    margin-top: 15%;
+}
+.larghezza-inviti {
+    width: 100%;
+}
+.table-cell-left {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+}
+.centra-tabella {
+    margin-right: 10%;
+    margin-top: 10%;
+}
+.titolo-inviti {
+    text-align: center;
+    font-size: 200%;
+    background: linear-gradient(0deg, #b3d0e9, #428bca);
+}
+.bei-bottoni {
+     text-align: center;
+    font-size: 200%;   
+}
+.white {
+    color: white;
+}

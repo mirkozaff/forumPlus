@@ -44,7 +44,7 @@ public class ControllerWeb extends HttpServlet {
         User user = (User) session.getAttribute(Variabili.USER);
         
         if ((user == null || op == null) && !Variabili.LOGIN.equals(op)){
-            forward(request,response,"/Login.jsp");
+            forward(request,response,"/forumJSP/Login.jsp");
             return;
         }       
         if (Variabili.LOGIN.equals(op) ){
@@ -52,13 +52,12 @@ public class ControllerWeb extends HttpServlet {
             String username = request.getParameter(Variabili.USERNAME);
             String password = request.getParameter(Variabili.PASSWORD);
             
-            user = new User(username);
-            if ( user == null || !manager.authenticate(username, password)){
-                forward(request,response,"/Login.jsp");
-            }
-            else{
+            if (manager.authenticate(username, password)){
+                user = manager.caricaBeanUtente(username, password);
+                user.setUsername(username);
+                user.setPassword(password);
                 session.setAttribute(Variabili.USER, user);
-                forward(request,response, "HomePage.jsp");
+                forward(request,response, "/forumJSP/HomePage.jsp");
             }
             return;
          }

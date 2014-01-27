@@ -3,9 +3,10 @@ package utility_package;
 
 public class User {
     
-    private static String username;
-    private static String password;
-    private static String imageURL;
+    private String username;
+    private String password;
+    private String imageURL;
+    private boolean moderatore;
 
     
     public User() {}    
@@ -13,46 +14,38 @@ public class User {
     public User(String name) {
         this.username = name;
     }
-    
-    /**
-     * @return the name
-     */
-    public static String getName() {
+
+    public String getUsername() {
         return username;
     }
 
-    /**
-     * @param aName the name to set
-     */
-    public static void setName(String aName) {
-        username = aName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    /**
-     * @return the password
-     */
-    public static String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    /**
-     * @param aPassword the password to set
-     */
-    public static void setPassword(String aPassword) {
-        password = aPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    /**
-     * @return the imageURL
-     */
-    public static String getImageURL() {
+    public String getImageURL() {
         return imageURL;
     }
 
-    /**
-     * @param aImageURL the imageURL to set
-     */
-    public static void setImageURL(String aImageURL) {
-        imageURL = aImageURL;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
+
+    public boolean isModeratore() {
+        return moderatore;
+    }
+
+    public void setModeratore(boolean moderatore) {
+        this.moderatore = moderatore;
+    }
+     
+  
 }
