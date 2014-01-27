@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -445,8 +446,10 @@ public class DBmanager implements Serializable{
         return ultimaData;
      }
       public User caricaBeanUtente(String username, String password) throws SQLException{
-          User user = new User();
-        PreparedStatement stm = con.prepareStatement("SELECT URL_IMAGE,MODERATORE FROM utenti WHERE name=? AND password=?");
+        User user = new User();
+        
+        //seleziono tutti i dati dell'utente dal db
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM utenti WHERE name=? AND password=?");
         try{
             stm.setString(1, username);
             stm.setString(2, password);
@@ -455,14 +458,70 @@ public class DBmanager implements Serializable{
                rs.next();
                String url_image = rs.getString("URL_IMAGE");
                boolean moderatore = rs.getBoolean("MODERATORE");
+               Timestamp ultimo_accesso = rs.getTimestamp("ULTIMO_ACCESSO");
+               int id = rs.getInt("ID");
+               String email = rs.getString("EMAIL");
+               
+               //metto i dati estratti nell'istanza user
                user.setImageURL(url_image);
+               user.setPassword(password);
+               user.setUsername(username);
                user.setModeratore(moderatore);
+               user.setUltimo_accesso(ultimo_accesso);
+               user.setId(id);
+               user.setEmail(email);
             } finally {
                 rs.close();
             }
         }finally {
             stm.close();
         }
+        
+        //ritorno l'user caricato
         return user;
-     }     
+     }
+      
+      public void setNewTimestamp(int id, Timestamp data) throws SQLException{
+          
+          //setto una nuova data all'utente il cui id è quello passato come parametro
+        PreparedStatement stm = con.prepareStatement("UPDATE utenti SET ultimo_accesso = ? WHERE id = ?"); 
+        try{
+            stm.setTimestamp(1, data);
+            stm.setInt(2, id);
+            stm.execute();
+         }finally {
+         stm.close();
+        }    
+    }
+      
+      public void aggiungiUtente(String nickname, String password, String email, Timestamp data) throws SQLException{
+         
+          //provo a cercare l'utente nel db per vedere se esiste già
+         PreparedStatement stm2 = con.prepareStatement("SELECT DISTINCT NAME,PASSWORD FROM utenti where NAME=? AND PASSWORD=?"); 
+         //creo un record nella tabella utenti con il nuovo utente creato
+         PreparedStatement stm = con.prepareStatement("INSERT INTO utenti(NAME,PASSWORD,URL_IMAGE,MODERATORE,ULTIMO_ACCESSO,EMAIL) VALUES (?,?,?,?,?,?)");
+         
+         try{
+             stm2.setString(1, nickname);
+             stm2.setString(2, password);
+             ResultSet rs = stm2.executeQuery();
+             
+             //se l'utente non esiste lo posso registrare
+         if(rs.next()==false){
+             stm.setString(1, nickname);
+             stm.setString(2, password);
+             stm.setString(3, "/forumIMG/default-no-profile-pic.jpg");
+             stm.setBoolean(4, false);
+             stm.setTimestamp(5, data);
+             stm.setString(6, email);
+             stm.execute();
+         }else{
+                System.out.println(" nome e password gia esistenti");
+            }
+         }finally{
+             stm2.close();
+             stm.close();
+         }
+     }
+      
 }

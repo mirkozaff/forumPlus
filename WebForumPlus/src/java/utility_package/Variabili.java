@@ -25,6 +25,8 @@ public class Variabili {
     
     public static final String LOGIN = "login";
     
+    public static final String REGISTRAZIONE = "registrazione";
+    
     public static final String USERNAME = "username";
     
     public static final String PASSWORD = "password";
@@ -42,4 +44,9 @@ public class Variabili {
     public static final String GNAME = "gname";
     
     public static final String GADMIN = "gadmin";
+    
+    public static final String NICKNAME = "nickname";
+    
+    public static final String EMAIL = "email";
+
 }

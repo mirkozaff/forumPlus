@@ -49,6 +49,10 @@ margin-top: 10%;
 .centra {
     text-align:center;
 }
+.centra-utente {
+    text-align: center;
+    font-size: 150%;
+}
 .inlinea {
     display: inline-block;
 }

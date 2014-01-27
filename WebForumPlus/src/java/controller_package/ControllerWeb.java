@@ -3,6 +3,8 @@ package controller_package;
 import db_package.DBmanager;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -54,13 +56,34 @@ public class ControllerWeb extends HttpServlet {
             
             if (manager.authenticate(username, password)){
                 user = manager.caricaBeanUtente(username, password);
-                user.setUsername(username);
-                user.setPassword(password);
                 session.setAttribute(Variabili.USER, user);
-                forward(request,response, "/forumJSP/HomePage.jsp");
+                Date data = new java.util.Date();
+                Timestamp timestamp = new Timestamp(data.getTime());
+                manager.setNewTimestamp(user.getId(), timestamp);
+                forward(request,response, "/forumJSP/HomePage2.jsp");
             }
             return;
          }
+            if (Variabili.REGISTRAZIONE.equals(op)){
+            String password = request.getParameter(Variabili.PASSWORD);
+            String nickname = request.getParameter(Variabili.NICKNAME); 
+            String email = request.getParameter(Variabili.EMAIL);
+            
+            //creo la data di registrazione che metto nel db come ultimo accesso
+            Date data = new java.util.Date();
+            Timestamp timestamp = new Timestamp(data.getTime());
+            
+            //aggiungo l'utente al db usando i dati di registrazione, l'immagine di default, la data appena calcolata e moderatore=false
+            manager.aggiungiUtente(nickname, password, email, timestamp);
+            
+            //creo un'istanza di utente prendendo i dati appena salvati nel db
+            user = manager.caricaBeanUtente(nickname, password);
+            
+            //metto l'utente in sessione così posso accederci dalle .jsp
+            session.setAttribute(Variabili.USER, user);
+            forward(request,response,"/forumJSP/HomePage2.jsp");
+            return;
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -5,6 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="user" scope="session" class="utility_package.User"/>
 <!DOCTYPE html>
@@ -25,9 +26,6 @@
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             &nbsp;
             <button type="button" class="btn btn-primary navbar-btn">HOME</button>
-            <label class="utente-nav">
-                <c:out value="${user.username}"> sconosciuto </c:out>
-            </label>
             <div class="nav navbar-nav navbar-right">
                 <!-- qui mettere l'ora di ultimo accesso (probabilmente tirando fuori l'info dal bean)-->
                 <button type="submit" class="btn btn-primary navbar-btn">Logout</button>
@@ -48,9 +46,14 @@
                     </div>
                     <div class="inlinea">
                         <div class=" div_testo table-cell-middle">
-                            <label class="centra">ciao bello</label>
+                            <label class="centra">ciao</label>
+                            <label class="centra-utente"><c:out value="${user.username}"> sconosciuto </c:out>!</label>
                             <br>
-                            <label class="centra">l'ultima volta sei entrato ieri</label>
+                            <label class="centra">l'ultima volta sei entrato era:</label>
+                            <br>
+                            <p>
+                            <fmt:formatDate type="both" value="${user.ultimo_accesso}"/>
+                            </p>
                         </div>
                     </div>
                 </div>
