@@ -64,11 +64,19 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="div_bottoni">
-                    <button type="button" class="btn btn-primary bei-bottoni"><label>Moderatore</label></button>
+                    <c:if test="${user.moderatore == true}">
+                      
+                            <button type="button" class="btn btn-primary bei-bottoni"><label>Moderatore</label></button>
+                        
                     <br>
-                    <button type="button" class="btn btn-primary bei-bottoni"><label>Gruppi</label></button>
+                    </c:if>
+                    
+                        <button onclick="window.location.href='/forumJSP/MostraGruppi.jsp'" name="op" value="listagruppi" type="button" class="btn btn-primary bei-bottoni"><label>Gruppi</label></button>
+                    
                     <br>
-                    <button type="button" class="btn btn-primary bei-bottoni"><label>Crea Gruppo</label></button>
+                    
+                    <button name="op" value="creagruppo" type="button" class="btn btn-primary bei-bottoni"><label>Crea Gruppo</label></button>
+                   
                 </div>
             </div>
             <div class="col-md-6">

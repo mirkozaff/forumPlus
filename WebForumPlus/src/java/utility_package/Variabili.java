@@ -48,5 +48,9 @@ public class Variabili {
     public static final String NICKNAME = "nickname";
     
     public static final String EMAIL = "email";
+    
+    public static final String CREAGRUPPO = "creagruppo";
+    
+    public static final String LISTAGRUPPI = "listagruppi";
 
 }
