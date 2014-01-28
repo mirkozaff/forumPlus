@@ -40,7 +40,7 @@
             &nbsp;
             <button onclick="window.location.href='/forumJSP/HomePage2.jsp'" type="button" class="btn btn-primary navbar-btn">HOME</button>
             <div class="nav navbar-nav navbar-right">                             
-                <a href="servletLogout"> <button type="submit" class="btn btn-primary navbar-btn">Logout</button> </a>
+                <button onclick="window.location.href='/Controller?op=logout'" type="submit" class="btn btn-primary navbar-btn">Logout</button>
                 &nbsp;
             </div>
         </nav>

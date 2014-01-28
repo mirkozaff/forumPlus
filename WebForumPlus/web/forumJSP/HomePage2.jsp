@@ -28,7 +28,7 @@
             <button type="button" class="btn btn-primary navbar-btn">HOME</button>
             <div class="nav navbar-nav navbar-right">
                 <!-- qui mettere l'ora di ultimo accesso (probabilmente tirando fuori l'info dal bean)-->
-                <button type="submit" class="btn btn-primary navbar-btn">Logout</button>
+                <button onclick="window.location.href='/Controller?op=logout'" type="submit" class="btn btn-primary navbar-btn">Logout</button>
                 &nbsp;
             </div>
         </nav>
