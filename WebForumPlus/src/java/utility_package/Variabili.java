@@ -25,6 +25,8 @@ public class Variabili {
     
     public static final String LOGIN = "login";
     
+    public static final String LOGOUT = "logout";
+    
     public static final String REGISTRAZIONE = "registrazione";
     
     public static final String USERNAME = "username";
