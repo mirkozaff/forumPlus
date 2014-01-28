@@ -23,7 +23,7 @@ public class ServletLogout extends HttpServlet {
         session.invalidate();
         
         ServletContext sc = getServletContext(); 
-        RequestDispatcher rd = sc.getRequestDispatcher("/forumJSP/Login.jsp"); 
+        RequestDispatcher rd = sc.getRequestDispatcher("/Controller"); 
         rd.forward(request,response);
     }
 
