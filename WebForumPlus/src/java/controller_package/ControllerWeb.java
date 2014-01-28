@@ -105,6 +105,11 @@ public class ControllerWeb extends HttpServlet {
             forward(request,response,"/forumJSP/EditGruppo.jsp");
             return;   
         }
+        if(Variabili.ALLEGATO.equals(op) || Variabili.AVATAR.equals(op) || Variabili.AVATAR_IMG.equals(op) || Variabili.PDF.equals(op)){
+            request.setAttribute(Variabili.OP, op);
+            forward(request, response, "/file/*");
+            return;
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
