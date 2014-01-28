@@ -4,6 +4,7 @@ import db_package.DBmanager;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import utility_package.Functions;
 import utility_package.User;
 import utility_package.Variabili;
 
@@ -84,6 +86,24 @@ public class ControllerWeb extends HttpServlet {
             forward(request,response,"/forumJSP/HomePage2.jsp");
             return;
         }
+            if(Variabili.CREAGRUPPO.equals(op)){
+             
+             
+             ArrayList<String> listanomi = new <String>ArrayList();
+             String gname = null;
+
+        this.manager = (DBmanager)super.getServletContext().getAttribute("dbmanager");    
+        manager.listanomi(listanomi); 
+        
+        if(listanomi.contains(user.getUsername())){
+            listanomi.remove(user.getUsername());
+        }
+        
+        request.setAttribute("listavisualizzata", listanomi);
+        request.setAttribute("gname", gname);
+        forward(request,response,"/forumJSP/EditGruppo.jsp");
+            return;   
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

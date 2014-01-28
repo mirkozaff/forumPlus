@@ -8,13 +8,17 @@
         <servlet-name>ControllerGruppi</servlet-name>
         <servlet-class>controller_package.ControllerGruppi</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditGruppoDB</servlet-name>
+        <servlet-class>controller_package.EditGruppoDB</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ControllerGruppi</servlet-name>
-        <url-pattern>/ControllerGruppi</url-pattern>
+        <servlet-name>EditGruppoDB</servlet-name>
+        <url-pattern>/EditGruppoDB</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

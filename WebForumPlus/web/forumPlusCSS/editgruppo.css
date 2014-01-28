@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 25-gen-2014, 12.00.37
+    Created on : 28-gen-2014, 9.25.01
     Author     : giovanni
 */
 body {
@@ -12,7 +12,7 @@ body {
   padding-top: 70px;
   background-color: #eee;
   background-image: url(../forumIMG/22-sfondo-multicolori.jpg);
-   overflow: hidden;
+  overflow: hidden;
 }
 
 .badge{
@@ -27,14 +27,28 @@ body {
 .btnmio{
  width: 200px;
 }
-
-.btn-right{
-    text-align:right;
+.sfondotr {
+  alignment-adjust: central;
+  color: 428bca;
+  background-color: #b3d0e9;
 }
 
+.testorosso {
+    color: red;
+}
+.contenitore-azzurro {
+    border-radius: 20px;
+    background-color: #b3d0e9;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.centra {
+    text-align:center;
+}
 .centraverticale {
 margin-top: 10%;
 }
-.colore-caselle {
-  background-color: #b3d0e9;
-}
+

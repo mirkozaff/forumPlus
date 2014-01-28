@@ -8,13 +8,10 @@ package controller_package;
 
 import db_package.DBmanager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,41 +24,42 @@ import utility_package.Variabili;
  *
  * @author giovanni
  */
-public class ControllerGruppi extends HttpServlet {
-    
+public class EditGruppoDB extends HttpServlet {
     private DBmanager manager;
 
-    @Override
-    public void init() throws ServletException {
-        // inizializza il DBManager dagli attributi di Application
-        this.manager = (DBmanager)super.getServletContext().getAttribute("dbmanager");
-    }
-
-    private void forward(HttpServletRequest request, HttpServletResponse response, String page)
-            throws ServletException, IOException {
-        
-        ServletContext sc = getServletContext(); 
-        RequestDispatcher rd = sc.getRequestDispatcher(page); 
-        rd.forward(request,response);
-    }
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         
-        String op = request.getParameter(Variabili.OP);
-        HttpSession session = request.getSession(true);
+    this.manager = (DBmanager)super.getServletContext().getAttribute("dbmanager");  //mi connetto al database
+    HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute(Variabili.USER);
+               
+        String nomegruppo = request.getParameter("nomegruppo");
+        String[] utentiNuovoGruppo = request.getParameterValues("utente");
         
-        ArrayList<String> listagruppi = new <String>ArrayList();
-        ArrayList<String> listaadmin = new <String>ArrayList();
-        
-        if(Variabili.LISTAGRUPPI.equals(op)){
-            if(user.getUsername() != null){
-            manager.listagruppi(user.getUsername(), listagruppi, listaadmin);
-            
-            }
+        String bottone =request.getParameter("bottone");
+        String gname = request.getParameter("gname");
+
+        if(bottone.toString().equals("crea gruppo")){
+        //provo a creare il gruppo richiesto
+        manager.aggiornalistagruppi(nomegruppo,user.getUsername(), utentiNuovoGruppo);
+        }else if(bottone.toString().equals("modifica gruppo") && gname.toString()!=null){
+        manager.modificagruppo(gname, nomegruppo ,user.getUsername(), utentiNuovoGruppo);
         }
         
+        
+
+        RequestDispatcher rd = request.getRequestDispatcher("/forumJSP/MostraGruppi.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -79,7 +77,7 @@ public class ControllerGruppi extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ControllerGruppi.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditGruppoDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -97,7 +95,7 @@ public class ControllerGruppi extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(ControllerGruppi.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditGruppoDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

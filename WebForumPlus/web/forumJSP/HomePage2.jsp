@@ -75,7 +75,7 @@
                     
                     <br>
                     
-                    <button name="op" value="creagruppo" type="button" class="btn btn-primary bei-bottoni"><label>Crea Gruppo</label></button>
+                    <button onclick="window.location.href='/Controller?op=creagruppo'" type="button" class="btn btn-primary bei-bottoni"><label>Crea Gruppo</label></button>
                    
                 </div>
             </div>
