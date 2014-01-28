@@ -93,6 +93,27 @@ public class DBmanager implements Serializable{
         }    
     }
     
+    public String getPassword(String name) throws SQLException{
+        
+        String password = "";
+        
+        PreparedStatement stm = con.prepareStatement("SELECT PASSWORD FROM utenti WHERE NAME= ?");
+        try{
+            stm.setString(1, name);
+            ResultSet rs = stm.executeQuery();
+            try{
+                while(rs.next()){
+                    password = rs.getString(1);
+                }
+            }finally {
+                rs.close();
+            }
+        }finally {
+         stm.close();
+        } 
+        return password;
+    }
+    
     public String getAvatar(String name) throws SQLException{
         PreparedStatement stm = con.prepareStatement("SELECT URL_IMAGE FROM utenti WHERE NAME= ?");
         try{
@@ -137,6 +158,18 @@ public class DBmanager implements Serializable{
             stm.setString(1, imgURL);
             stm.setString(2, name);
             session.setAttribute("img", imgURL);
+            stm.execute();
+         }finally {
+         stm.close();
+        }    
+    }
+    
+    public void setPassword(String name, String password) throws SQLException{
+        PreparedStatement stm = con.prepareStatement("UPDATE utenti SET PASSWORD= ? WHERE NAME= ?");
+        
+        try{
+            stm.setString(1, password);
+            stm.setString(2, name);
             stm.execute();
          }finally {
          stm.close();

@@ -110,6 +110,10 @@ public class ControllerWeb extends HttpServlet {
             forward(request, response, "/file/*");
             return;
         }
+        if(Variabili.CAMBIO_PASS.equals(op)){
+            forward(request, response, "/ServletCambioPassword");
+            return;
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
