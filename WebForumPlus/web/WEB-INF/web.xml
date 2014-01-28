@@ -34,12 +34,30 @@
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>servletFileServe</servlet-name>
+        <servlet-name>ServletFileServe</servlet-name>
         <servlet-class>servlet_package.ServletFileServe</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>servletFileServe</servlet-name>
+        <servlet-name>ServletFileServe</servlet-name>
         <url-pattern>/file/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ServletUpload</servlet-name>
+        <servlet-class>servlet_package.ServletUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletUpload</servlet-name>
+        <url-pattern>/ServletUpload</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ServletPDF</servlet-name>
+        <servlet-class>servlet_package.ServletPDF</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletPDF</servlet-name>
+        <url-pattern>/ServletPDF</url-pattern>
     </servlet-mapping>
     
     <session-config>
