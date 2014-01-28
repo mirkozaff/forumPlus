@@ -37,6 +37,7 @@
             </div>
             <div class="col-md-6"> 
                 <div class="contenitore-azzurro">
+                    <div class="centra">
                     <div class="inlinea">
                         <div class="table-cell-middle">
                             <img src="/forumIMG/22-sfondo-multicolori.jpg" alt="no image." onerror="src='/WebForumPlus/forumIMG/default-no-profile-pic.jpg'" class="img-thumbnail" style="width: 300px">
@@ -56,6 +57,7 @@
                             </p>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>         
             <div class="col-md-3">   
