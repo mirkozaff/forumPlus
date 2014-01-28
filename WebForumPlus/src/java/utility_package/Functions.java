@@ -20,7 +20,8 @@ public class Functions {
     
     public static String getUserName(HttpServletRequest request){
         HttpSession session = request.getSession();
-        return session.getAttribute("name").toString();
+        User user =(User) session.getAttribute("user");
+        return user.getUsername();
     }
     
     public static String getUserIMG(HttpServletRequest request){

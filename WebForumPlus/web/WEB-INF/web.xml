@@ -33,6 +33,15 @@
         <url-pattern>/ServletLogout</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>servletFileServe</servlet-name>
+        <servlet-class>servlet_package.ServletFileServe</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>servletFileServe</servlet-name>
+        <url-pattern>/file/*</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             15
