@@ -15,7 +15,9 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
 import utility_package.Functions;
+import utility_package.User;
 import utility_package.Variabili;
 
 
@@ -34,7 +36,8 @@ public class ServletUpload extends HttpServlet {
     throws ServletException, IOException, SQLException{
         
         this.manager = (DBmanager)super.getServletContext().getAttribute("dbmanager");
-        
+        HttpSession session = request.getSession();
+        User user =(User) session.getAttribute("user");
         //prendo i valori dei parametri
         gadmin = request.getParameter("gadmin");
         gname = request.getParameter("gname"); 
@@ -43,7 +46,8 @@ public class ServletUpload extends HttpServlet {
         //setta il path
         if(request.getParameter(Variabili.OP).equals(Variabili.PROFILE_IMG)){
             filePath = Variabili.PATH_PROFILE_IMG + Functions.getUserName(request);
-            redirect = "/WebForum/servletDatiUtente";
+            redirect = "/forumJSP/DatiUtente.jsp";
+
             //setto a true cosi so che sto uploadando un immagine profilo
             // invece che un file di allegato
             imgChange = true;
@@ -71,6 +75,7 @@ public class ServletUpload extends HttpServlet {
             if(imgChange){
                 manager.setImageURL(Functions.getUserName(request), filename, request.getSession());
                 imgChange = false;
+                user.setImageURL(filename);
             }
             else if(post != null){
                 String data = new Date().toString();

@@ -47,10 +47,10 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="contenitore-azzurro">
-                     <img src="file/<c:out value="${user.imageURL}"></c:out>?op=img_profilo" alt="no image." onerror="src='/forumIMG/default-no-profile-pic.jpg'" class="img-thumbnail" style="width: 300px">
+                     <img src="/file/<c:out value="${user.imageURL}"></c:out>?op=img_profilo" alt="no image." onerror="src='/forumIMG/default-no-profile-pic.jpg'" class="img-thumbnail" style="width: 300px">
                          <br>
                     <div class="centra">
-                        <form class="form-inline" action="ServletUpload?op=img_profilo" method=POST enctype="multipart/form-data">
+                        <form class="form-inline" action="/ServletUpload?op=img_profilo" method=POST enctype="multipart/form-data">
                             <div class="form-group">
                                 <input type="file" name="file1">
                             </div>
