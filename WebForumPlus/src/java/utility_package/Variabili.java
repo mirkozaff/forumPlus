@@ -23,8 +23,6 @@ public class Variabili {
     
     public static final String PDF = "pdf";
     
-    public static final String UPLOAD = "upload";
-    
     public static final String LOGIN = "login";
     
     public static final String LOGOUT = "logout";

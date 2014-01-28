@@ -43,7 +43,7 @@ public class ServletUpload extends HttpServlet {
         //setta il path
         if(request.getParameter(Variabili.OP).equals(Variabili.PROFILE_IMG)){
             filePath = Variabili.PATH_PROFILE_IMG + Functions.getUserName(request);
-            redirect = "/forumJDP/DatiUtente.jsp";
+            redirect = "/WebForum/servletDatiUtente";
             //setto a true cosi so che sto uploadando un immagine profilo
             // invece che un file di allegato
             imgChange = true;
