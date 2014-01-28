@@ -40,7 +40,7 @@
                     <div class="centra">
                     <div class="inlinea">
                         <div class="table-cell-middle">
-                            <img src="file/<c:out value="${user.imageURL}"></c:out>?op=img_profilo" alt="no image." onerror="src='/WebForumPlus/forumIMG/default-no-profile-pic.jpg'" class="img-thumbnail" style="width: 300px">
+                            <img src="file/<c:out value="${user.imageURL}"></c:out>?op=img_profilo" alt="no image." onerror="src='/forumIMG/default-no-profile-pic.jpg'" class="img-thumbnail" style="width: 300px">
                             <br>
                             <button onclick="window.location.href='/forumJSP/DatiUtente.jsp'" type="button" class="btn btn-primary margine-top">dati utente</button>
                         </div>
