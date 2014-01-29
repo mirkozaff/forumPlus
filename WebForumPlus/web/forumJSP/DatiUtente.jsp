@@ -60,6 +60,14 @@
                         </form>
                     </div>
                 </div>
+                         <br>
+                         <div class="contenitore-azzurro">
+                             <form class="form-inline" action="/ServletUpload?op=img_profilo" method=POST>
+                            <div class="form-group">
+                                <input class="btn btn-lg btn-success" type="submit" value="Cambia Password">
+                            </div>
+                        </form>
+                         </div>
             </div>
             <div class="col-md-4"></div>
         <script src="../bootstrapJS/jquery.js"></script>
