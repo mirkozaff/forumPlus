@@ -62,7 +62,7 @@
                 </div>
                          <br>
                          <div class="contenitore-azzurro">
-                             <form class="form-inline" action="/ServletUpload?op=img_profilo" method=POST>
+                             <form class="form-inline" action="/forumJSP/CambioPass.jsp" method=POST>
                             <div class="form-group">
                                 <input class="btn btn-lg btn-success" type="submit" value="Cambia Password">
                             </div>

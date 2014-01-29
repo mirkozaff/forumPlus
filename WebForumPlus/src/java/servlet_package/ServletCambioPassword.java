@@ -32,9 +32,9 @@ public class ServletCambioPassword extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException{
         
-        vecchiaPassword = request.getAttribute("old_password").toString();
-        nuovaPassword = request.getAttribute("password").toString();
-        ripetiPassword = request.getAttribute("pass2").toString();
+        vecchiaPassword = request.getParameter("old_password");
+        nuovaPassword = request.getParameter("password");
+        ripetiPassword = request.getParameter("pass2");
         
         if(!manager.getPassword(Functions.getUserName(request)).equals(vecchiaPassword)){
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
