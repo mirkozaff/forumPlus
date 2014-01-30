@@ -69,6 +69,15 @@
         <url-pattern>/ServletPDF</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>ServletSendMail</servlet-name>
+        <servlet-class>servlet_package.ServletSendMail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSendMail</servlet-name>
+        <url-pattern>/ServletSendMail</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             15

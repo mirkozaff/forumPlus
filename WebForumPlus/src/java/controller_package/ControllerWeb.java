@@ -43,9 +43,16 @@ public class ControllerWeb extends HttpServlet {
             throws ServletException, IOException, SQLException {
         
         String op = request.getParameter(Variabili.OP);
+        System.out.println("op: " + op);
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute(Variabili.USER);
         
+        
+        if(Variabili.RECUPERO_PASS.equals(op)){
+            System.out.println("cambio pass");
+            forward(request, response, "/ServletSendMail");
+            return;
+        }
         if ((user == null || op == null) && !Variabili.LOGIN.equals(op)){
             forward(request,response,"/forumJSP/Login.jsp");
             return;
@@ -114,6 +121,7 @@ public class ControllerWeb extends HttpServlet {
             forward(request, response, "/ServletCambioPassword");
             return;
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

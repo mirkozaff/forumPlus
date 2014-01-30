@@ -38,7 +38,7 @@
         <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
         <input type="password" name="password" class="form-control" placeholder="Password" required>
         <label>
-        <a href="">Hai dimenticato la password?</a>
+        <a href="/forumJSP/RecuperoPass.jsp">Hai dimenticato la password?</a>
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>

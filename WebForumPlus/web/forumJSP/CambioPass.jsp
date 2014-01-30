@@ -19,7 +19,6 @@
   <body>
 
     <div class="container">
-      <!-- quando si clicca "registrati" viene chiamata la funzione controlla() che vede se le due password sono uguali-->
       <form onSubmit="controlla()" action="/Controller?op=cambio_pass" class="form-signin" name="Mioform" method="POST">
         <h2 class="titolo">Cambia password</h2>
         <label>Vecchia Password</label>

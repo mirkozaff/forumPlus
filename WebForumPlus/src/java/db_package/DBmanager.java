@@ -114,6 +114,27 @@ public class DBmanager implements Serializable{
         return password;
     }
     
+    public String getMail(String name) throws SQLException{
+        
+        String email = "";
+        
+        PreparedStatement stm = con.prepareStatement("SELECT EMAIL FROM utenti WHERE NAME= ?");
+        try{
+            stm.setString(1, name);
+            ResultSet rs = stm.executeQuery();
+            try{
+                while(rs.next()){
+                    email = rs.getString(1);
+                }
+            }finally {
+                rs.close();
+            }
+        }finally {
+         stm.close();
+        } 
+        return email;
+    }
+    
     public String getAvatar(String name) throws SQLException{
         PreparedStatement stm = con.prepareStatement("SELECT URL_IMAGE FROM utenti WHERE NAME= ?");
         try{

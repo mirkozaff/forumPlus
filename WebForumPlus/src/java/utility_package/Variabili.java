@@ -37,6 +37,8 @@ public class Variabili {
     
     public static final String PASSWORD = "password";
     
+    public static final String RECUPERO_PASS = "recupero";
+    
     public static final String USER = "user";
     
     public static final String TESTO = "testo";
