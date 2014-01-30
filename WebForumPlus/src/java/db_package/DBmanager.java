@@ -64,10 +64,11 @@ public class DBmanager implements Serializable{
         try{
             stm.setString(1, name);
             ResultSet rs = stm.executeQuery();
+            System.out.println("appena prima di entrare nella query");
             try{
             while(rs.next()){
-                listagruppi.add(rs.getString(1));
-                listaadmin.add(rs.getString(2));
+                listagruppi.add(rs.getString("GNAME"));
+                listaadmin.add(rs.getString("GADMIN"));
             }
             } finally {
             rs.close();

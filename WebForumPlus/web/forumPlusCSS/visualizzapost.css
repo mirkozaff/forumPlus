@@ -1,0 +1,64 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30-gen-2014, 16.49.14
+    Author     : giovanni
+*/
+body {
+  min-height: 2000px;
+  padding-top: 70px;
+  background-color: #eee;
+  background-image: url(../forumIMG/22-sfondo-multicolori.jpg);
+}
+
+.badge{
+  color: 428bca;
+  background-color: #b3d0e9;
+}
+
+.navbar-default{
+ background-color: #b3d0e9;
+}
+
+.btnmio{
+ width: 200px;
+}
+.sfondotr {
+  alignment-adjust: central;
+  color: 428bca;
+  background-color: #b3d0e9;
+}
+.contenitore-azzurro {
+    border-radius: 20px;
+    background-color: #b3d0e9;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.centraverticale {
+margin-top: 10%;
+}
+
+.divcentrato{
+    margin-left: 200px;
+    margin-right: 200px;
+    padding-bottom: 50px;
+    padding-left: 20px; 
+    border-radius: 20px;
+}
+
+.box {
+width: auto;
+height: 125px;
+margin-right: 25%;
+overflow: auto;
+border: 1px solid #428bca;
+padding: 2px;
+text-align: justify;
+background: #fff;
+}
