@@ -71,7 +71,7 @@
                                     <c:out value="${listaadmin[indice.index]}"/>  <!-- uso l'indice dell'array dei nomi dei gruppi per ciclare sull'array degli admin-->
                                 </td>
                                 <td class="cell-left">
-                                    <form action="servletVisualizzaPost" method=POST>
+                                    <form action="/Controller?op=visualizzapost" method=POST>
                                         <input class="btn btn-lg btn-success" type="submit" value="entra">
                                         <input type="hidden" name="gname" value="<c:out value="${gruppo}"/>">
                                         <input type="hidden" name="gadmin" value="<c:out value="${listaadmin[indice.index]}"/>">

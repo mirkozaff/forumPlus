@@ -59,4 +59,5 @@ public class Variabili {
     
     public static final String LISTAGRUPPI = "listagruppi";
 
+    public static final String VISUALIZZAPOST = "visualizzapost";
 }
