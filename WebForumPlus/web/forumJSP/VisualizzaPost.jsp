@@ -18,7 +18,7 @@
         <!-- Bootstrap core CSS -->
         <link href="../bootstrapCSS/bootstrap.css" rel="stylesheet">
         <!-- Custom styles for this template -->
-        <link href="../forumPlusCSS/visualizzaPost.css" rel="stylesheet">
+        <link href="../forumPlusCSS/visualizzapost.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="../bootstrap-3.0.0/assets/js/html5shiv.js"></script>
@@ -31,7 +31,7 @@
                 <a href="servletMainPage">
                     <button type="button" class="btn btn-primary navbar-btn">HOME</button>
                 </a>
-                <a href="servletListaGruppi">
+                <a href="/forumJSP/MostraGruppi.jsp">
                     <button type="button" class="btn btn-primary dropdown-toggle navbar-btn">torna ai gruppi</button>
                 </a>
             </div>    
@@ -57,7 +57,7 @@
                     <div class="modal-body">
                         <textarea name="post" placeholder="scrivi qui il tuo post..." cols="85" rows="8" maxlength="10000" style="resize: none" form="form" required></textarea>
                         <div>
-                            <form id="form" action="servletUpload?op=testo&gname=<c:out value="${requestScope.gname}&gadmin=${requestScope.gadmin}"></c:out>" method=POST enctype="multipart/form-data">
+                            <form id="form" action="/ServletUpload?op=testo&gname=<c:out value="${requestScope.gname}&gadmin=${requestScope.gadmin}"></c:out>" method=POST enctype="multipart/form-data">
                                     <br>
                                     <input type="file" name="filepost">
                                     <br>
@@ -73,7 +73,7 @@
         </div>
                             <%-- modal--%>
         <div class="navbar-default divcentrato">
-            <p align="center" style="font-size: 250%"><c:out value="${requestScope.gname}"></c:out>"/></p>
+            <p align="center" style="font-size: 250%"><c:out value="${requestScope.gname}"></c:out></p>
                 <div style="text-align: center">
                     <form action="servletEditGruppo" method=POST>
                         <button type="submit" class="btn btn-success navbar-btn">edita gruppo</button>&nbsp;
@@ -114,12 +114,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        
                 </c:forEach>
             </c:otherwise>
         </c:choose>
     </div>
-    <script src="bootstrapJS/modal.js"></script>
+    <script src="../bootstrapJS/modal.js"></script>
     <script src="../bootstrapJS/jquery.js"></script>
     <script src="../bootstrapJS/bootstrap.min.js"></script>
 </body>

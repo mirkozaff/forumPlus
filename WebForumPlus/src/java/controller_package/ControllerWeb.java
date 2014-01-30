@@ -130,6 +130,8 @@ public class ControllerWeb extends HttpServlet {
         manager.getpost(gname, gadmin, listapost);
         
         request.setAttribute("listapost", listapost);
+        request.setAttribute("gname", gname);
+        request.setAttribute("gadmin", gadmin);
          forward(request, response, "/forumJSP/VisualizzaPost.jsp");
             return;
         }
