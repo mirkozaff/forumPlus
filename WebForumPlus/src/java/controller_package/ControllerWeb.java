@@ -50,7 +50,6 @@ public class ControllerWeb extends HttpServlet {
         
         
         if(Variabili.RECUPERO_PASS.equals(op)){
-            System.out.println("cambio pass");
             forward(request, response, "/ServletSendMail");
             return;
         }

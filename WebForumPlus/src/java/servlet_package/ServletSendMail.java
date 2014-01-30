@@ -66,10 +66,7 @@ public class ServletSendMail extends HttpServlet {
         
         String mailto = request.getParameter("mailto");
         String username = request.getParameter("username");
-        System.out.println("ciaooo");
-        System.out.println(mailto + " " + username);
         if(manager.getMail(username).equals(mailto)){
-            System.out.println("ok controllo");
             inviaMailRecupero(request, response, mailto, username);
             ServletContext sc = getServletContext(); 
             RequestDispatcher rd = sc.getRequestDispatcher("/forumJSP/Login.jsp"); 
