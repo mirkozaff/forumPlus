@@ -124,15 +124,15 @@ public class ControllerWeb extends HttpServlet {
         if(Variabili.VISUALIZZAPOST.equals(op)){
             String gname = request.getParameter(Variabili.GNAME);
             String gadmin = request.getParameter(Variabili.GADMIN);
-        ArrayList<Post> listapost = new ArrayList<Post>();
+            ArrayList<Post> listapost = new ArrayList<Post>();
        
-        this.manager = (DBmanager)super.getServletContext().getAttribute("dbmanager");
-        manager.getpost(gname, gadmin, listapost);
+            this.manager = (DBmanager)super.getServletContext().getAttribute("dbmanager");
+            manager.getpost(gname, gadmin, listapost);
         
-        request.setAttribute("listapost", listapost);
-        request.setAttribute("gname", gname);
-        request.setAttribute("gadmin", gadmin);
-         forward(request, response, "/forumJSP/VisualizzaPost.jsp");
+            request.setAttribute("listapost", listapost);
+            request.setAttribute("gname", gname);
+            request.setAttribute("gadmin", gadmin);
+            forward(request, response, "/forumJSP/VisualizzaPost.jsp");
             return;
         }
     }
