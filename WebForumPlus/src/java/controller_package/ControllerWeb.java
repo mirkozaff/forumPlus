@@ -100,8 +100,7 @@ public class ControllerWeb extends HttpServlet {
         if(Variabili.CREAGRUPPO.equals(op)){          
             ArrayList<String> listanomi = new <String>ArrayList();
             String gname = null;
-
-            this.manager = (DBmanager)super.getServletContext().getAttribute("dbmanager");    
+  
             manager.listanomi(listanomi); 
 
             if(listanomi.contains(user.getUsername())){
@@ -123,7 +122,6 @@ public class ControllerWeb extends HttpServlet {
         ArrayList<String> listanomi = new <String>ArrayList();
         ArrayList<String> listaiscritti = new <String>ArrayList();
         ArrayList<String> listavisualizzata = new <String>ArrayList();
-        this.manager = (DBmanager)super.getServletContext().getAttribute("dbmanager");
         
         manager.listanomi(listanomi); 
         manager.listaiscritti(gname, gadmin, listaiscritti);
@@ -142,6 +140,17 @@ public class ControllerWeb extends HttpServlet {
         }
             return; 
         }
+        if(Variabili.RISPOSTAINVITO.equals(op)){
+        String bottone=request.getParameter("bottone");
+        String gname=request.getParameter("gname");
+        String gadmin=request.getParameter("gadmin");
+        
+        manager.aggiornarecordinviti(gname, Functions.getUserName(request), gadmin, bottone);
+        
+            forward(request, response, "/forumJSP/HomePage2.jsp");
+        
+            return;
+        } 
         if(Variabili.ALLEGATO.equals(op) || Variabili.AVATAR.equals(op) || Variabili.AVATAR_IMG.equals(op) || Variabili.PDF.equals(op)){
             request.setAttribute(Variabili.OP, op);
             forward(request, response, "/file/*");

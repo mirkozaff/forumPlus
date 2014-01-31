@@ -4,10 +4,22 @@
     Author     : giovanni
 --%>
 
+<%@page import="utility_package.Functions"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="user" scope="session" class="utility_package.User"/>
+<jsp:useBean id="manager" scope="session" class="db_package.DBmanager"/>
+
+<%
+        ArrayList listagname = new ArrayList();
+        ArrayList listagadmin = new ArrayList();
+        //chiedo se ci sono inviti per l'utente
+        manager.getinviti(Functions.getUserName(request),listagname, listagadmin);
+        request.setAttribute("listagname", listagname);
+        request.setAttribute("listagadmin", listagadmin);
+ %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -89,23 +101,33 @@
 
                             <!-- Table -->
                             <table class="table">
-                                          <!-- qui mettere il for che scorre gli inviti-->
+                                <c:choose>
+                                    <c:when test="${not empty requestScope.listagname}">
+                                <c:forEach items="${requestScope.listagname}" var="nome" varStatus="indice">         <!-- qui mettere il for che scorre gli inviti-->
                         <tr class="colore-caselle">
                             <td>
-                                <label> nome gruppo </label>
+                                <label><c:out value="${nome}"/> di <c:out value="${requestScope.listagadmin[indice.index]}"/></label>
                             </td>
                             <td class="table-cell-left">
-                                <form action="servletRisposteInviti" method=POST>
+                                <form action="/Controller?op=rispostainvito" method=POST>
                                     <button type="submit" class="btn btn-success" name="bottone" value="accetta">accetta</button>&nbsp;
-                                    <button type="submit" class="btn btn-danger" name="bottone" value="rifiuta">Rifiuta</button>
-                                    
-                                    <input type="hidden" name="gname" value="listagname.get(i)">
-                                    <input type="hidden" name="gadmin" value="listagadmin.get(i)">
+                                    <button type="submit" class="btn btn-danger" name="bottone" value="rifiuta">Rifiuta</button>                                   
+                                    <input type="hidden" name="gname" value="<c:out value="${nome}"/>">
+                                    <input type="hidden" name="gadmin" value="<c:out value="${requestScope.listagadmin[indice.index]}"/>">
                                 </form>
                             </td>
                             
                         </tr>
-                        <!-- gestire il caso in cui non ci siano inviti con <p>non hai inviti</p> -->
+                                </c:forEach>
+                                    </c:when>
+                        <c:otherwise>
+                            <tr class="colore-caselle">
+                                <td>
+                            <p class="noinviti">non hai inviti</p>
+                                </td>
+                            </tr>
+                        </c:otherwise>
+                            </c:choose>
                             </table>
                         </div>
                     </div>  

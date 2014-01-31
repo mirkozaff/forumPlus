@@ -64,4 +64,7 @@ public class Variabili {
     public static final String VISUALIZZAPOST = "visualizzapost";
     
     public static final String MODIFICAGRUPPO = "modificagruppo";
+    
+    public static final String RISPOSTAINVITO = "rispostainvito";
+
 }
