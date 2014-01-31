@@ -73,12 +73,14 @@
         <div class="navbar-default divcentrato">
             <p align="center" style="font-size: 250%"><c:out value="${requestScope.gname}"></c:out></p>
                 <div style="text-align: center">
+                <c:if test="${requestScope.gadmin == user.username}">
                     <form action="/Controller?op=modificagruppo" method=POST>
                         <button type="submit" class="btn btn-success navbar-btn">edita gruppo</button>&nbsp;
                         <input type="hidden" name="gname" value="<c:out value="${requestScope.gname}"></c:out>"/>
                         <input type="hidden" name="gadmin" value="<c:out value="${requestScope.gadmin}"></c:out>"/>
                         <button type="submin" class="btn btn-success navbar-btn" formaction="servletPDF">pdf del gruppo</button>
                     </form>
+                </c:if>
                 </div>
             <c:choose>
                 <c:when test="${empty requestScope.listapost}">         <!-- controllo se listapost è vuota-->
