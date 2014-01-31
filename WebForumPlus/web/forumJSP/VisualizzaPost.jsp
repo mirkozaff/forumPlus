@@ -28,17 +28,15 @@
     <body>
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="nav navbar-nav">
-                <a href="servletMainPage">
-                    <button type="button" class="btn btn-primary navbar-btn">HOME</button>
-                </a>
-                <a href="/forumJSP/MostraGruppi.jsp">
-                    <button type="button" class="btn btn-primary dropdown-toggle navbar-btn">torna ai gruppi</button>
-                </a>
+                &nbsp;
+<button onclick="window.location.href='/forumJSP/HomePage2.jsp'" type="button" class="btn btn-primary navbar-btn">HOME</button>
+
+                    <button onclick="window.location.href='/forumJSP/MostraGruppi.jsp'" type="button" class="btn btn-primary navbar-btn">Torna ai gruppi</button>
+           
             </div>    
             <div class="nav navbar-nav navbar-right">
-                <a href="servletLogout">
-                    <button type="submit" class="btn btn-primary navbar-btn">Logout</button>
-                </a>
+                <button onclick="window.location.href='/Controller?op=logout'" type="button" class="btn btn-primary navbar-btn">Logout</button>
+                &nbsp;
             </div>
         </nav>
         <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" >
@@ -75,10 +73,10 @@
         <div class="navbar-default divcentrato">
             <p align="center" style="font-size: 250%"><c:out value="${requestScope.gname}"></c:out></p>
                 <div style="text-align: center">
-                    <form action="servletEditGruppo" method=POST>
+                    <form action="/Controller?op=modificagruppo" method=POST>
                         <button type="submit" class="btn btn-success navbar-btn">edita gruppo</button>&nbsp;
                         <input type="hidden" name="gname" value="<c:out value="${requestScope.gname}"></c:out>"/>
-                    <input type="hidden" name="gadmin" value="<c:out value="${requestScope.gadmin}"></c:out>"/>
+                        <input type="hidden" name="gadmin" value="<c:out value="${requestScope.gadmin}"></c:out>"/>
                         <button type="submin" class="btn btn-success navbar-btn" formaction="servletPDF">pdf del gruppo</button>
                     </form>
                 </div>
@@ -100,7 +98,7 @@
                                         </div>
                                         <div class="row">
                                             <div>
-                                                <img <c:out value="src=\"/file/${manager.getAvatar(post.getUtente_postante())}?op=img_avatar&avatar=${post.getUtente_postante()}\" alt=\"no image\" onerror=\"src='/WebForum/forumIMG/default-no-profile-pic.jpg'\" class=\"img-rounded\" style=\"width: 100px\" "></c:out>/>     
+                                                <img src="/file/<c:out value="${manager.getAvatar(post.getUtente_postante())}"/>?op=img_avatar&avatar=<c:out value="${post.getUtente_postante()}"/>" alt="no image" onerror="src='/WebForum/forumIMG/default-no-profile-pic.jpg'" class="img-rounded" style="width: 100px">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -108,8 +106,8 @@
                                         </div>
                                     </div>
                                     <div style="margin-top: 20px">
-                                        <div class="box">
-                                        <c:out value="${post.getTesto()}"></c:out>
+                                        <div class="box">                                     
+                                             <c:out value="${post.getTesto()}" escapeXml="false"></c:out> 
                                         </div>
                                     </div>
                                 </div>

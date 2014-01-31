@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import utility_package.Functions;
 import utility_package.Post;
 import utility_package.User;
 import utility_package.Variabili;
@@ -111,6 +112,35 @@ public class ControllerWeb extends HttpServlet {
             request.setAttribute("gname", gname);
             forward(request,response,"/forumJSP/EditGruppo.jsp");
             return;   
+        }
+         if(Variabili.MODIFICAGRUPPO.equals(op)){  
+             
+        String gname =request.getParameter("gname");
+        String gadmin=request.getParameter("gadmin");
+        
+        if(gname!=null && gadmin!=null){
+        
+        ArrayList<String> listanomi = new <String>ArrayList();
+        ArrayList<String> listaiscritti = new <String>ArrayList();
+        ArrayList<String> listavisualizzata = new <String>ArrayList();
+        this.manager = (DBmanager)super.getServletContext().getAttribute("dbmanager");
+        
+        manager.listanomi(listanomi); 
+        manager.listaiscritti(gname, gadmin, listaiscritti);
+        
+        if(listanomi.contains(Functions.getUserName(request))){
+            listanomi.remove(Functions.getUserName(request));
+        }
+        for (String s : listanomi) {  
+            if(!listaiscritti.contains(s)){
+                listavisualizzata.add(s);
+            }
+        }
+            request.setAttribute("listavisualizzata", listavisualizzata);
+            request.setAttribute("gname", gname);
+            forward(request,response,"/forumJSP/EditGruppo.jsp");
+        }
+            return; 
         }
         if(Variabili.ALLEGATO.equals(op) || Variabili.AVATAR.equals(op) || Variabili.AVATAR_IMG.equals(op) || Variabili.PDF.equals(op)){
             request.setAttribute(Variabili.OP, op);

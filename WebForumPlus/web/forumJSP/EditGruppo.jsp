@@ -35,7 +35,7 @@
             &nbsp;
             <button onclick="window.location.href = '/forumJSP/HomePage2.jsp'" type="button" class="btn btn-primary navbar-btn">HOME</button>
             <div class="nav navbar-nav navbar-right">                             
-                <a href="servletLogout"> <button type="submit" class="btn btn-primary navbar-btn">Logout</button> </a>
+                <button onclick="window.location.href='/Controller?op=logout'" type="submit" class="btn btn-primary navbar-btn">Logout</button>
                 &nbsp;
             </div>
         </nav>
@@ -51,8 +51,8 @@
                                     <input type="text" class="form-control" name="nomegruppo"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <input type="text" class="form-control" name="nomegruppo" value="${empty requestScope.gname}"> <!-- gname esiste e la metto nel textfield-->
-                                    <input type="hidden" name="gname" value="${empty requestScope.gname}">
+                                    <input type="text" class="form-control" name="nomegruppo" value="${requestScope.gname}"> <!-- gname esiste e la metto nel textfield-->
+                                    <input type="hidden" name="gname" value="${requestScope.gname}">
                                 </c:otherwise>
                             </c:choose>
                         </div>
