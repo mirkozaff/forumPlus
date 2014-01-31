@@ -2,15 +2,19 @@ package servlet_package;
 
 import db_package.DBmanager;
 import java.io.IOException;
+import java.security.Security;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
@@ -34,35 +38,45 @@ public class ServletSendMail extends HttpServlet {
     }
     
     public void inviaMailRecupero(HttpServletRequest request, HttpServletResponse response, String mailto, String username)
-        throws ServletException, IOException, SQLException{
+        throws ServletException, IOException, SQLException, AddressException, MessagingException{
         
-        try {
+        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 
-            Properties props = System.getProperties();
-            props.put( "mail.smtp.host", "mail.unitn.it" );
-            props.put( "mail.debug", "true" );
-            
-            Session session = Session.getDefaultInstance( props );
-            Message message = new MimeMessage( session );
-            
-            InternetAddress from = new InternetAddress("WebForum@unitn.it");
-            InternetAddress to[] = InternetAddress.parse(mailto);
-            
-            message.setFrom( from );
-            message.setRecipients( Message.RecipientType.TO, to );
-            message.setSubject( "Recupero password" );
-            message.setSentDate( new Date() );
-            message.setText( "La tua password è: " + manager.getPassword(username));
+        final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 
-            Transport.send(message);
+        // Get a Properties object
+        Properties props = System.getProperties();
+        props.setProperty("mail.smtp.host", "smtp.gmail.com");
+        props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+        props.setProperty("mail.smtp.socketFactory.fallback", "false");
+        props.setProperty("mail.smtp.port", "465");
+        props.setProperty("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.auth", "true");
+        props.put( "mail.debug", "true" );
 
-        }catch(MessagingException e) {
-                e.printStackTrace();
-        }
+        final String usernamemail = "pincopanco.forum@gmail.com";
+        final String password = "qwerty123<";
+
+        Session session = Session.getDefaultInstance(props, new Authenticator(){
+        protected PasswordAuthentication getPasswordAuthentication() {
+        return new PasswordAuthentication(usernamemail, password);
+        }});
+
+        // Create a new message
+        Message msg = new MimeMessage(session);
+
+        // Set the FROM and TO fields
+        msg.setFrom(new InternetAddress(usernamemail + ""));
+        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailto,false));
+        msg.setSubject("Recupero Password");
+        msg.setText("La tua password è: "+ manager.getPassword(username));
+        msg.setSentDate(new Date());
+
+        Transport.send(msg);
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, AddressException, MessagingException {
         
         String mailto = request.getParameter("mailto");
         String username = request.getParameter("username");
@@ -90,7 +104,11 @@ public class ServletSendMail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+            try {
+                processRequest(request, response);
+            } catch (MessagingException ex) {
+                Logger.getLogger(ServletSendMail.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ServletSendMail.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -108,7 +126,11 @@ public class ServletSendMail extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            processRequest(request, response);
+            try {
+                processRequest(request, response);
+            } catch (MessagingException ex) {
+                Logger.getLogger(ServletSendMail.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ServletSendMail.class.getName()).log(Level.SEVERE, null, ex);
         }
