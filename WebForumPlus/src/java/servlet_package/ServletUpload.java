@@ -54,7 +54,7 @@ public class ServletUpload extends HttpServlet {
         }
         else if(request.getParameter(Variabili.OP).equals(Variabili.TESTO)){
             filePath = Variabili.PATH_GROUPS + gid;
-            redirect = "/WebForum/servletVisualizzaPost?gname="+gname+"&gadmin="+gadmin;
+            redirect = "/forumJSP/servletVisualizzaPost.jsp?gname="+gname+"&gadmin="+gadmin;
         }
         else{
             // error 404
