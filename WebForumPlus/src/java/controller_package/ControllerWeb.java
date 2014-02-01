@@ -135,9 +135,12 @@ public class ControllerWeb extends HttpServlet {
                         listavisualizzata.add(s);
                     }
                 }
+                
+                Boolean visibility = manager.getGroupVisibility(gname, gadmin);           
 
                 request.setAttribute("listavisualizzata", listavisualizzata);
                 request.setAttribute("gname", gname);
+                request.setAttribute("visibility", visibility);
                 forward(request,response,"/forumJSP/EditGruppo.jsp");
             }
             return; 

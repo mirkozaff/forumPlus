@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package controller_package;
 
 import db_package.DBmanager;
@@ -20,22 +14,11 @@ import javax.servlet.http.HttpSession;
 import utility_package.User;
 import utility_package.Variabili;
 
-/**
- *
- * @author giovanni
- */
+
 public class EditGruppoDB extends HttpServlet {
     private DBmanager manager;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         
@@ -48,12 +31,14 @@ public class EditGruppoDB extends HttpServlet {
         
         String bottone =request.getParameter("bottone");
         String gname = request.getParameter("gname");
+        Boolean visibility = Boolean.valueOf(request.getParameter("visibility"));
 
         if(bottone.toString().equals("crea gruppo")){
-        //provo a creare il gruppo richiesto
-        manager.aggiornalistagruppi(nomegruppo,user.getUsername(), utentiNuovoGruppo);
-        }else if(bottone.toString().equals("modifica gruppo") && gname.toString()!=null){
-        manager.modificagruppo(gname, nomegruppo ,user.getUsername(), utentiNuovoGruppo);
+            //provo a creare il gruppo richiesto
+            manager.aggiornalistagruppi(nomegruppo,user.getUsername(), utentiNuovoGruppo, visibility);
+        }
+        else if(bottone.toString().equals("modifica gruppo") && gname.toString()!=null){
+            manager.modificagruppo(gname, nomegruppo ,user.getUsername(), utentiNuovoGruppo, visibility);
         }
         
         

@@ -56,8 +56,16 @@
                                 </c:otherwise>
                             </c:choose>
                         </div>
+                        <div>      
+                            <label>Visibilità gruppo:</label>
+                            <select name="visibility" >
+                                <option value="true" ${requestScope.visibility == 'true' ? 'selected' : ''}>Pubblico</option>
+                                <option value="false" ${requestScope.visibility  == 'false' ? 'selected' : ''}>Privato</option>
+                            </select>
+                        </div>
+                        &nbsp;
                         <div class="form-group"> 
-                            <label>invita i tuoi amici</label>
+                            <label>Invita i tuoi amici</label>
                             <c:choose>
                                 <c:when test="${not empty requestScope.listavisualizzata}">     <!-- prendo la lista di utenti da mettere nelle checkbox (l'ho creata nel Controller)-->
                                     <c:forEach items="${requestScope.listavisualizzata}" var="nomeutente"> <!-- aggiungo le checkbox-->

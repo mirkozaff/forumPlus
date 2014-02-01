@@ -195,6 +195,25 @@ public class DBmanager implements Serializable{
         return 0;
     }
     
+    public Boolean getGroupVisibility(String gname, String gadmin) throws SQLException{
+        PreparedStatement stm = con.prepareStatement("SELECT PUBBLICO FROM Gruppi WHERE GNAME=? AND GADMIN=?");
+        try{
+            stm.setString(1, gname);
+            stm.setString(2, gadmin);
+            ResultSet rs = stm.executeQuery();
+            try{
+                while(rs.next()){
+                    return rs.getBoolean(1);
+                }
+            }finally {
+                rs.close();
+            }
+        }finally {
+         stm.close();
+        }  
+        return false;
+    }
+    
     public void setImageURL(String name, String imgURL, HttpSession session) throws SQLException{
         PreparedStatement stm = con.prepareStatement("UPDATE utenti SET URL_IMAGE= ? WHERE NAME= ?");
         
@@ -293,12 +312,12 @@ public class DBmanager implements Serializable{
       }
       
       
-     public void aggiornalistagruppi(String gname, String adminname, String[] utentiNuovoGruppo) throws SQLException{  
+     public void aggiornalistagruppi(String gname, String adminname, String[] utentiNuovoGruppo, boolean visibility) throws SQLException{  
          
          int idValue = getMaxID();
          //cerco se esiste già un record nella tabella "gruppi" in cui il nome del gruppo e l'admin sono uguali a quelli che voglio creare
         PreparedStatement stm = con.prepareStatement("SELECT DISTINCT GNAME,GADMIN FROM gruppi where GNAME=? AND GADMIN=?"); 
-        PreparedStatement stm2 = con.prepareStatement("INSERT INTO gruppi(ID,GNAME,UTENTE,GADMIN,INVITATO) VALUES (?,?,?,?,?)");
+        PreparedStatement stm2 = con.prepareStatement("INSERT INTO gruppi(ID,GNAME,UTENTE,GADMIN,INVITATO,PUBBLICO) VALUES (?,?,?,?,?,?)");
         try{
             stm.setString(1, gname);
             stm.setString(2, adminname);
@@ -313,6 +332,7 @@ public class DBmanager implements Serializable{
                 stm2.setString(3, adminname);
                 stm2.setString(4, adminname);
                 stm2.setBoolean(5, false);
+                stm2.setBoolean(6, visibility);
                 stm2.execute();
                 
                 //aggiorno il db con il record riguardante gli invitati (gname, admin, admin)
@@ -323,6 +343,7 @@ public class DBmanager implements Serializable{
                 stm2.setString(3, utentiNuovoGruppo[i]);
                 stm2.setString(4, adminname);
                 stm2.setBoolean(5, true);
+                stm2.setBoolean(6, visibility);
                 stm2.execute();
                 }
                 }
@@ -421,13 +442,15 @@ public class DBmanager implements Serializable{
          }
      }
 
-     public void modificagruppo(String gname, String newgname, String gadmin, String[] utentiNuovoGruppo) throws SQLException{
+     public void modificagruppo(String gname, String newgname, String gadmin, String[] utentiNuovoGruppo, Boolean visibility) throws SQLException{
          
          //faccio l'update del nome del gruppo
          PreparedStatement stm = con.prepareStatement("UPDATE gruppi SET GNAME=? WHERE GNAME=? AND GADMIN=?");
          //aggiungo i nuovi utenti invitati
-         PreparedStatement stm2 = con.prepareStatement("INSERT INTO gruppi(ID,GNAME,UTENTE,GADMIN,INVITATO) VALUES (?,?,?,?,?)");
+         PreparedStatement stm2 = con.prepareStatement("INSERT INTO gruppi(ID,GNAME,UTENTE,GADMIN,INVITATO,PUBBLICO) VALUES (?,?,?,?,?,?)");
          PreparedStatement stm3 = con.prepareStatement("UPDATE post SET GNAME=? WHERE GNAME=?");
+         //modifico visibilità
+         PreparedStatement stm4 = con.prepareStatement("UPDATE gruppi SET PUBBLICO=? WHERE GNAME=? AND GADMIN=?");
          
          try{
              stm.setString(1, newgname);
@@ -438,6 +461,11 @@ public class DBmanager implements Serializable{
              stm3.setString(1, newgname);
              stm3.setString(2, gname);
              stm3.execute();
+             //modifico visibilità
+             stm4.setBoolean(1, visibility);
+             stm4.setString(2, newgname);
+             stm4.setString(3, gadmin);
+             stm4.execute();
          }finally{
              stm.close();
          }
@@ -451,6 +479,7 @@ public class DBmanager implements Serializable{
                     stm2.setString(3, utentiNuovoGruppo[i]);
                     stm2.setString(4, gadmin);
                     stm2.setBoolean(5, true);
+                    stm2.setBoolean(6, visibility);
                     stm2.execute();
                     System.out.println("aggiunti i nuovi tizi invitati");
                 }
