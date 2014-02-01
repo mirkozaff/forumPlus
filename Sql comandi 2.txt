@@ -19,5 +19,5 @@ gadmin VARCHAR(1024) NOT NULL,
 utente VARCHAR(1024) NOT NULL,
 invitato BOOLEAN,
 pubblico BOOLEAN DEFAULT false,
-closed BOOLEAN DEFAULT false,
+closed BOOLEAN DEFAULT false
 ) ;
