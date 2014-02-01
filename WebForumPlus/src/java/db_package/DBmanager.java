@@ -57,7 +57,8 @@ public class DBmanager implements Serializable{
         } 
         return false;
     }
-     public void listagruppi(String name, ArrayList<String> listagruppi, ArrayList<String> listaadmin ) throws SQLException{
+    
+    public void listagruppi(String name, ArrayList<String> listagruppi, ArrayList<String> listaadmin ) throws SQLException{
          
          // trovo i gruppi a cui l'utente è iscritto o di cui è amministratore
         PreparedStatement stm = con.prepareStatement("SELECT DISTINCT GNAME,GADMIN FROM gruppi where UTENTE=? AND INVITATO=false");
@@ -77,6 +78,27 @@ public class DBmanager implements Serializable{
          stm.close();
         }
    }
+    
+    public void listaGruppiPubblici(ArrayList<String> listagruppi, ArrayList<String> listaadmin ) throws SQLException{
+        
+        PreparedStatement stm = con.prepareStatement("SELECT DISTINCT GNAME,GADMIN FROM gruppi where PUBBLICO=true");
+        try{
+            ResultSet rs = stm.executeQuery();
+            try{
+            while(rs.next()){
+                listagruppi.add(rs.getString("GNAME"));
+                listaadmin.add(rs.getString("GADMIN"));
+            }
+            } finally {
+            rs.close();
+            }
+        }finally {
+         stm.close();
+        }
+   }
+    
+
+    
     public void getImageURL(String name, HttpSession session) throws SQLException{
         PreparedStatement stm = con.prepareStatement("SELECT URL_IMAGE FROM utenti WHERE NAME= ?");
         try{

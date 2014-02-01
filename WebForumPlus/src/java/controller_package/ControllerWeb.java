@@ -73,7 +73,8 @@ public class ControllerWeb extends HttpServlet {
             }
             return;
          }
-            if (Variabili.REGISTRAZIONE.equals(op)){
+         if (Variabili.REGISTRAZIONE.equals(op)){
+           
             String password = request.getParameter(Variabili.PASSWORD);
             String nickname = request.getParameter(Variabili.NICKNAME); 
             String email = request.getParameter(Variabili.EMAIL);
@@ -113,39 +114,40 @@ public class ControllerWeb extends HttpServlet {
             return;   
         }
          if(Variabili.MODIFICAGRUPPO.equals(op)){  
-             
-        String gname =request.getParameter("gname");
-        String gadmin=request.getParameter("gadmin");
-        
-        if(gname!=null && gadmin!=null){
-        
-        ArrayList<String> listanomi = new <String>ArrayList();
-        ArrayList<String> listaiscritti = new <String>ArrayList();
-        ArrayList<String> listavisualizzata = new <String>ArrayList();
-        
-        manager.listanomi(listanomi); 
-        manager.listaiscritti(gname, gadmin, listaiscritti);
-        
-        if(listanomi.contains(Functions.getUserName(request))){
-            listanomi.remove(Functions.getUserName(request));
-        }
-        for (String s : listanomi) {  
-            if(!listaiscritti.contains(s)){
-                listavisualizzata.add(s);
+
+            String gname =request.getParameter("gname");
+            String gadmin=request.getParameter("gadmin");
+
+            if(gname!=null && gadmin!=null){
+
+                ArrayList<String> listanomi = new <String>ArrayList();
+                ArrayList<String> listaiscritti = new <String>ArrayList();
+                ArrayList<String> listavisualizzata = new <String>ArrayList();
+
+                manager.listanomi(listanomi); 
+                manager.listaiscritti(gname, gadmin, listaiscritti);
+
+                if(listanomi.contains(Functions.getUserName(request))){
+                    listanomi.remove(Functions.getUserName(request));
+                }
+                for (String s : listanomi) {  
+                    if(!listaiscritti.contains(s)){
+                        listavisualizzata.add(s);
+                    }
+                }
+
+                request.setAttribute("listavisualizzata", listavisualizzata);
+                request.setAttribute("gname", gname);
+                forward(request,response,"/forumJSP/EditGruppo.jsp");
             }
-        }
-            request.setAttribute("listavisualizzata", listavisualizzata);
-            request.setAttribute("gname", gname);
-            forward(request,response,"/forumJSP/EditGruppo.jsp");
-        }
             return; 
         }
         if(Variabili.RISPOSTAINVITO.equals(op)){
-        String bottone=request.getParameter("bottone");
-        String gname=request.getParameter("gname");
-        String gadmin=request.getParameter("gadmin");
-        
-        manager.aggiornarecordinviti(gname, Functions.getUserName(request), gadmin, bottone);
+            String bottone=request.getParameter("bottone");
+            String gname=request.getParameter("gname");
+            String gadmin=request.getParameter("gadmin");
+
+            manager.aggiornarecordinviti(gname, Functions.getUserName(request), gadmin, bottone);
         
             forward(request, response, "/forumJSP/HomePage2.jsp");
         
