@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import utility_package.Functions;
+import utility_package.Gruppo;
 import utility_package.Post;
 import utility_package.User;
 import utility_package.Variabili;
@@ -168,14 +169,18 @@ public class ControllerWeb extends HttpServlet {
         if(Variabili.VISUALIZZAPOST.equals(op)){
             String gname = request.getParameter(Variabili.GNAME);
             String gadmin = request.getParameter(Variabili.GADMIN);
+            String bottone = request.getParameter(Variabili.OP);
             ArrayList<Post> listapost = new ArrayList<Post>();
+            Gruppo gruppo;
        
-            this.manager = (DBmanager)super.getServletContext().getAttribute("dbmanager");
             manager.getpost(gname, gadmin, listapost);
-        
+            gruppo = manager.getGroupInfo(gname, gadmin, user.getUsername());
+            
+            request.setAttribute("gruppo", gruppo);
             request.setAttribute("listapost", listapost);
             request.setAttribute("gname", gname);
             request.setAttribute("gadmin", gadmin);
+            request.setAttribute("bottone", op);
             forward(request, response, "/forumJSP/VisualizzaPost.jsp");
             return;
         }

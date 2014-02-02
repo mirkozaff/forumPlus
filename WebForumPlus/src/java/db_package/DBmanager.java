@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
+import utility_package.Gruppo;
 import utility_package.Post;
 import utility_package.User;
 
@@ -629,5 +630,60 @@ public class DBmanager implements Serializable{
              stm.close();
          }
      }
+      public Gruppo getGroupInfo(String gname, String gadmin, String user) throws SQLException{
+        
+          Gruppo gruppo = new Gruppo();
+        
+        //seleziono tutti i dati dell'utente dal db
+        PreparedStatement stm = con.prepareStatement("SELECT DISTINCT pubblico,closed FROM gruppi WHERE gname=? AND gadmin=?");
+        PreparedStatement stm2 = con.prepareStatement("SELECT DISTINCT * FROM gruppi where GNAME =? AND GADMIN=? AND UTENTE=? AND INVITATO=false");
+        try{
+            stm.setString(1, gname);
+            stm.setString(2, gadmin);        
+            ResultSet rs = stm.executeQuery();           
+            try{          
+               rs.next();              
+               boolean pubblico = rs.getBoolean("PUBBLICO");
+               boolean chiuso = rs.getBoolean("CLOSED");
+               
+               //metto i dati estratti nell'istanza gruppo
+               gruppo.setPubblico(pubblico);
+               gruppo.setClosed(chiuso);
+               gruppo.setUtente(user);
+               gruppo.setGname(gname);
+               if(gadmin.equals(user)){
+                   gruppo.setGadmin(user);
+               }else{gruppo.setGadmin(gadmin);}          
+               
+            } finally {
+                rs.close();
+            }          
+        }finally {
+            stm.close();
+        }
+          try {
+              stm2.setString(1, gname);
+              stm2.setString(2, gadmin);
+              stm2.setString(3, user);
+              ResultSet rs2 = stm2.executeQuery();
+
+              try {
+                  if (rs2.next()) {
+                      gruppo.setInscritto(true);
+                  } else {
+                      gruppo.setInscritto(false);
+                  }
+              } finally {
+                  rs2.close();
+              }
+          } finally {
+              stm2.close();
+          }
+        
+        //ritorno l'user caricato
+        return gruppo;
+     }
       
 }
+
+
