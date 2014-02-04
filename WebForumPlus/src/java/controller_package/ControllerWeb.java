@@ -195,7 +195,6 @@ public class ControllerWeb extends HttpServlet {
         }
 
         if(Variabili.MOSTRAGRUPPILOGGATO.equals(op)){
-
     
         ArrayList listagruppipubblici = new ArrayList();
     ArrayList listaadminpubblici = new ArrayList();
@@ -203,6 +202,7 @@ public class ControllerWeb extends HttpServlet {
     request.setAttribute("listagruppipubblici", listagruppipubblici);
     request.setAttribute("listaadminpubblici", listaadminpubblici);
     
+
 
             ArrayList listagruppi = new ArrayList();
             ArrayList listaadmin = new ArrayList();
