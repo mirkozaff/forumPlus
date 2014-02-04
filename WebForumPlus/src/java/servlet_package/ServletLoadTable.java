@@ -57,8 +57,14 @@ public class ServletLoadTable extends HttpServlet {
                 gname = listagruppi.get(i).toString();
                 gadmin = listaadmin.get(i).toString();
                 
-                final String buttonIn = ("<form action=\"/Controller?op=visualizzapost\" method=POST>" +
-                                            "<input class=\"btn btn-lg btn-success\" type=\"submit\" value=\"entra\">" +
+                final String buttonClose = ("<form action=\"/Controller?op=chiudigruppo\" method=POST>" +
+                                            "<input class=\"btn btn-lg btn-danger\" type=\"submit\" value=\"Chiudi\">" +
+                                            "<input type=\"hidden\" name=\"gname\" value=\""+gname+"\">" +
+                                            "<input type=\"hidden\" name=\"gadmin\" value=\""+gadmin+"\">" +
+                                            "</form>").replace("\"", "\\\"");
+                
+                final String buttonIn= ("<form action=\"/Controller?op=visualizzapost\" method=POST>" +
+                                            "<input class=\"btn btn-lg btn-success\" type=\"submit\" value=\"Entra\">" +
                                             "<input type=\"hidden\" name=\"gname\" value=\""+gname+"\">" +
                                             "<input type=\"hidden\" name=\"gadmin\" value=\""+gadmin+"\">" +
                                             "</form>").replace("\"", "\\\"");
@@ -73,7 +79,8 @@ public class ServletLoadTable extends HttpServlet {
                 }
             
                 pw.append("\"").append(String.valueOf(manager.numeroPostPDF(gname, gadmin))).append("\",");
-                pw.append("\"").append(buttonIn).append("\"]");
+                pw.append("\"").append(buttonIn).append("\",");
+                pw.append("\"").append(buttonClose).append("\"]");
                 if(i < listagruppi.size()-1){
                     pw.print(",");
                 }

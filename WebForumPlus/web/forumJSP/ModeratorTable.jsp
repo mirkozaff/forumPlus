@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="<c:url value="/css/jquery.dataTables.css"/>"/>
         <!-- Bootstrap core CSS -->
         <link href="../bootstrapCSS/bootstrap.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="../forumPlusCSS/mostragruppi.css" rel="stylesheet">
         <script type="text/javascript" src='<c:url value="/js/jquery.js"/>'></script>
         <script type="text/javascript" src='<c:url value="/js/jquery.dataTables.min.js"/>'></script>
     </head>
@@ -25,7 +27,7 @@
             });
         </script>
         
-
+        <div class="contenitore-azzurro">
         <h2>Lista gruppi</h2>
         <table id="groupstable" >
             <thead>
@@ -36,11 +38,14 @@
                     <th>Visibilità</th>
                     <th>N° post</th>
                     <th>Entra</th>
+                    <th>Chiudi</th>
+                    
                 </tr>
             </thead>
             <tbody>
                 <%-- Il contenuto della tabella è popolato da una chiamata AJAX --%>
             </tbody>
         </table>
+        </div>
     </body>
 </html>
