@@ -73,6 +73,39 @@
                             </tr>
                         </c:forEach>
                     </table>
+                    
+                    <table class="table">
+                        <tr class="sfondotr text-center">
+                            <td colspan="3">
+                                <h2>Gruppi pubblici</h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4>Nome:</h4>
+                            </td>
+                            <td class="cell-center">
+                                <h4>Admin:</h4>
+                        </tr>
+                        <br>
+                        <c:forEach items="${requestScope.listagruppipubblici}" var="gruppo" varStatus="indice">   <!-- ciclo sui nomi dei gruppi-->
+                            <tr>
+                                <td>
+                                    <c:out value="${gruppo}"/>
+                                </td>
+                                <td class="cell-center">
+                                    <c:out value="${requestScope.listaadminpubblici[indice.index]}"/>  <!-- uso l'indice dell'array dei nomi dei gruppi per ciclare sull'array degli admin-->
+                                </td>
+                                <td class="cell-left">
+                                    <form action="/Controller?op=visualizzapost" method=POST>
+                                        <input class="btn btn-lg btn-success" type="submit" value="entra">
+                                        <input type="hidden" name="gname" value="<c:out value="${gruppo}"/>">
+                                        <input type="hidden" name="gadmin" value="<c:out value="${requestScope.listaadminpubblici[indice.index]}"/>">
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
                 </div>
             </div>
             <div class="col-md-4">

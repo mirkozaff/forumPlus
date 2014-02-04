@@ -194,6 +194,13 @@ public class ControllerWeb extends HttpServlet {
     manager.listagruppi(user.getUsername(), listagruppi, listaadmin);
     request.setAttribute("listagruppi", listagruppi);
     request.setAttribute("listaadmin", listaadmin);
+    
+        ArrayList listagruppipubblici = new ArrayList();
+    ArrayList listaadminpubblici = new ArrayList();
+    manager.listaGruppiPubblici(listagruppipubblici, listaadminpubblici);
+    request.setAttribute("listagruppipubblici", listagruppipubblici);
+    request.setAttribute("listaadminpubblici", listaadminpubblici);
+    
             forward(request, response, "/forumJSP/MostraGruppi.jsp");
             return;
         }        
