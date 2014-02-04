@@ -82,7 +82,7 @@ public class ServletLoadTable extends HttpServlet {
                 pw.append("\"").append(String.valueOf(manager.numeroPostPDF(gname, gadmin))).append("\",");
                 pw.append("\"").append(buttonIn).append("\",");
                 if(manager.getGroupStatus(gname, gadmin)){
-                    pw.append("\"").append("CHIUSO").append("\"]");   
+                    pw.append("\"").append("<label style=color:red>CHIUSO</label>").append("\"]");   
                 }else{
                     pw.append("\"").append(buttonClose).append("\"]");
                 }
