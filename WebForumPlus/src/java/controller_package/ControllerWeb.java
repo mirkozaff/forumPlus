@@ -74,10 +74,27 @@ public class ControllerWeb extends HttpServlet {
                 Date data = new java.util.Date();
                 Timestamp timestamp = new Timestamp(data.getTime());
                 manager.setNewTimestamp(user.getId(), timestamp);
+                
+                ArrayList listagname = new ArrayList();
+                ArrayList listagadmin = new ArrayList();
+        //chiedo se ci sono inviti per l'utente
+        manager.getinviti(Functions.getUserName(request),listagname, listagadmin);
+        request.setAttribute("listagname", listagname);
+        request.setAttribute("listagadmin", listagadmin);
                 forward(request,response, "/forumJSP/HomePage2.jsp");
             }
             return;
          }
+                if(Variabili.HOME.equals(op)){
+                                    ArrayList listagname = new ArrayList();
+                ArrayList listagadmin = new ArrayList();
+        //chiedo se ci sono inviti per l'utente
+        manager.getinviti(Functions.getUserName(request),listagname, listagadmin);
+        request.setAttribute("listagname", listagname);
+        request.setAttribute("listagadmin", listagadmin);
+            forward(request, response, "/forumJSP/HomePage2.jsp");
+            return;
+        }
          if (Variabili.REGISTRAZIONE.equals(op)){
            
             String password = request.getParameter(Variabili.PASSWORD);

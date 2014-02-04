@@ -34,7 +34,7 @@
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="nav navbar-nav">
                 &nbsp;
-                <button onclick="window.location.href = '/forumJSP/HomePage2.jsp'" type="button" class="btn btn-primary navbar-btn">HOME</button>
+                <button onclick="window.location.href = '/Controller?op=home'" type="button" class="btn btn-primary navbar-btn">HOME</button>
 
                 <button onclick="window.location.href = '/Controller?op=mostragruppi_loggato'" type="button" class="btn btn-primary navbar-btn">Torna ai gruppi</button>
 
@@ -49,7 +49,7 @@
                 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="nav navbar-nav">
                 &nbsp;
-                <button onclick="window.location.href = '/forumJSP/HomePage2.jsp'" type="button" class="btn btn-primary navbar-btn">HOME</button>
+                <button onclick="window.location.href = '/Controller?op=home'" type="button" class="btn btn-primary navbar-btn">HOME</button>
 
                 <button onclick="window.location.href = '/Controller?op=mostragruppi_moderatore'" type="button" class="btn btn-primary navbar-btn">Torna ai gruppi del moderatore</button>
 

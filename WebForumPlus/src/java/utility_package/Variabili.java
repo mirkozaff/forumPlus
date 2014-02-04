@@ -76,4 +76,6 @@ public class Variabili {
     public static final String MOSTRAGRUPPIMODERATORE = "mostragruppi_moderatore";
     
     public static final String BOTTONE = "bottone";
+    
+    public static final String HOME = "home";
 }

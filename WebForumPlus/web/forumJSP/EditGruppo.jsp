@@ -33,7 +33,7 @@
         
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             &nbsp;
-            <button onclick="window.location.href = '/forumJSP/HomePage2.jsp'" type="button" class="btn btn-primary navbar-btn">HOME</button>
+            <button onclick="window.location.href = '/Controller?op=home'" type="button" class="btn btn-primary navbar-btn">HOME</button>
             <div class="nav navbar-nav navbar-right">                             
                 <button onclick="window.location.href='/Controller?op=logout'" type="submit" class="btn btn-primary navbar-btn">Logout</button>
                 &nbsp;
