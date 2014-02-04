@@ -80,7 +80,7 @@
                 <div class="div_bottoni">
                     <c:if test="${user.moderatore == true}">
                       
-                            <button type="button" class="btn btn-primary bei-bottoni"><label>Moderatore</label></button>
+                            <button onclick="window.location.href='/Controller?op=mostragruppi_moderatore'" type="button" class="btn btn-primary bei-bottoni"><label>Moderatore</label></button>
                         
                     <br>
                     </c:if>

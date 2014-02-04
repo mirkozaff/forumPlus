@@ -36,7 +36,7 @@
                 &nbsp;
                 <button onclick="window.location.href = '/forumJSP/HomePage2.jsp'" type="button" class="btn btn-primary navbar-btn">HOME</button>
 
-                <button onclick="window.location.href = '/forumJSP/MostraGruppi.jsp'" type="button" class="btn btn-primary navbar-btn">Torna ai gruppi</button>
+                <button onclick="window.location.href = '/Controller?op=mostragruppi_loggato'" type="button" class="btn btn-primary navbar-btn">Torna ai gruppi</button>
 
             </div>    
             <div class="nav navbar-nav navbar-right">
@@ -73,7 +73,7 @@
         </nav>
             </c:otherwise>
         </c:choose>
-        <c:if test="${(user.username != null) && (gruppo.closed == false) && (gruppo.inscritto)}">
+        <c:if test="${(user.username != null) && (gruppo.closed == false) && (gruppo.inscritto == true)}">
                         <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" >
             <div style="text-align: center">
                 <a data-toggle="modal" href="#example"><button type="button" class="btn btn-primary navbar-btn">Add POST</button></a>
