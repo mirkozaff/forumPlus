@@ -14,13 +14,6 @@
 <!DOCTYPE html>
 
 <%-- prendo i nomi e gli admin dei gruppi che interessano all'utente--%>
-<%
-    ArrayList listagruppi = new ArrayList();
-    ArrayList listaadmin = new ArrayList();
-    manager.listagruppi(user.getUsername(), listagruppi, listaadmin);
-    request.setAttribute("listagruppi", listagruppi);
-    request.setAttribute("listaadmin", listaadmin);
-%>
 
 <html lang="en">
     <head>
@@ -62,19 +55,19 @@
                                 <h4>Admin:</h4>
                         </tr>
                         <br>
-                        <c:forEach items="${listagruppi}" var="gruppo" varStatus="indice">   <!-- ciclo sui nomi dei gruppi-->
+                        <c:forEach items="${requestScope.listagruppi}" var="gruppo" varStatus="indice">   <!-- ciclo sui nomi dei gruppi-->
                             <tr>
                                 <td>
                                     <c:out value="${gruppo}"/>
                                 </td>
                                 <td class="cell-center">
-                                    <c:out value="${listaadmin[indice.index]}"/>  <!-- uso l'indice dell'array dei nomi dei gruppi per ciclare sull'array degli admin-->
+                                    <c:out value="${requestScope.listaadmin[indice.index]}"/>  <!-- uso l'indice dell'array dei nomi dei gruppi per ciclare sull'array degli admin-->
                                 </td>
                                 <td class="cell-left">
                                     <form action="/Controller?op=visualizzapost" method=POST>
                                         <input class="btn btn-lg btn-success" type="submit" value="entra">
                                         <input type="hidden" name="gname" value="<c:out value="${gruppo}"/>">
-                                        <input type="hidden" name="gadmin" value="<c:out value="${listaadmin[indice.index]}"/>">
+                                        <input type="hidden" name="gadmin" value="<c:out value="${requestScope.listaadmin[indice.index]}"/>">
                                     </form>
                                 </td>
                             </tr>
