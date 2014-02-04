@@ -111,7 +111,7 @@
             <p align="center" style="font-size: 250%"><c:out value="${requestScope.gname}"></c:out></p>
             <c:if test="${gruppo.closed}">
                 <br>
-                <p align="center" style="font-size: 150%"> il gruppo è chiuso!!</p>
+                <p align="center" class="chiuso"> il gruppo è chiuso!!</p>
             </c:if>
                 <div style="text-align: center">
                 <c:if test="${(requestScope.gadmin == user.username) && (gruppo.closed == false)}">

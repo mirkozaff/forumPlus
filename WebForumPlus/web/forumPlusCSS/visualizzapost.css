@@ -62,3 +62,7 @@ padding: 2px;
 text-align: justify;
 background: #fff;
 }
+.chiuso {
+    font-size: 150%;
+    color: red;   
+}
