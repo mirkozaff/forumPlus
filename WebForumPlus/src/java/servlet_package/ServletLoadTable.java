@@ -57,6 +57,12 @@ public class ServletLoadTable extends HttpServlet {
                 gname = listagruppi.get(i).toString();
                 gadmin = listaadmin.get(i).toString();
                 
+                final String buttonIn = ("<form action=\"/Controller?op=visualizzapost\" method=POST>" +
+                                            "<input class=\"btn btn-lg btn-success\" type=\"submit\" value=\"entra\">" +
+                                            "<input type=\"hidden\" name=\"gname\" value=\""+gname+"\">" +
+                                            "<input type=\"hidden\" name=\"gadmin\" value=\""+gadmin+"\">" +
+                                            "</form>").replace("\"", "\\\"");
+                
                 pw.append("[\"").append(gname).append("\",");
                 pw.append("\"").append(gadmin).append("\",");
                 pw.append("\"").append(String.valueOf(manager.getNumeroUtentiPartecipanti(gname, gadmin))).append("\",");
@@ -66,14 +72,17 @@ public class ServletLoadTable extends HttpServlet {
                     pw.append("\"").append("Privato").append("\",");   
                 }
             
-                pw.append("\"").append(String.valueOf(manager.numeroPostPDF(gname, gadmin))).append("\"]");
-                
+                pw.append("\"").append(String.valueOf(manager.numeroPostPDF(gname, gadmin))).append("\",");
+                pw.append("\"").append(buttonIn).append("\"]");
                 if(i < listagruppi.size()-1){
                     pw.print(",");
                 }
+                
             }
             
             pw.print("]}");
+            System.out.print(pw);
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(ServletLoadTable.class.getName()).log(Level.SEVERE, ex.toString(), ex);

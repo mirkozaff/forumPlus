@@ -8,6 +8,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista prodotti</title>
         <link rel="stylesheet" href="<c:url value="/css/jquery.dataTables.css"/>"/>
+        <!-- Bootstrap core CSS -->
+        <link href="../bootstrapCSS/bootstrap.css" rel="stylesheet">
         <script type="text/javascript" src='<c:url value="/js/jquery.js"/>'></script>
         <script type="text/javascript" src='<c:url value="/js/jquery.dataTables.min.js"/>'></script>
     </head>
@@ -33,6 +35,7 @@
                     <th>N° parteipanti</th>
                     <th>Visibilità</th>
                     <th>N° post</th>
+                    <th>Entra</th>
                 </tr>
             </thead>
             <tbody>
