@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista prodotti</title>
+        <title>Lista gruppi</title>
         <link rel="stylesheet" href="<c:url value="/css/jquery.dataTables.css"/>"/>
         <script type="text/javascript" src='<c:url value="/js/jquery.js"/>'></script>
         <script type="text/javascript" src='<c:url value="/js/jquery.dataTables.min.js"/>'></script>
@@ -24,7 +24,7 @@
         </script>
         
 
-        <h2>Lista prodotti</h2>
+        <h2>Lista gruppi</h2>
         <table id="groupstable" >
             <thead>
                 <tr>

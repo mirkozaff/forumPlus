@@ -43,7 +43,7 @@ public class EditGruppoDB extends HttpServlet {
         
         
 
-        RequestDispatcher rd = request.getRequestDispatcher("/forumJSP/MostraGruppi.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/Controller?op=mostragruppi_loggato");
         rd.forward(request, response);
     }
 

@@ -72,5 +72,6 @@ public class Variabili {
     public static final String GRUPPIPUBBLICI = "gruppi_pubblici";
     
     public static final String MOSTRAGRUPPILOGGATO = "mostragruppi_loggato";
-
+    
+    public static final String MOSTRAGRUPPIMODERATORE = "mostragruppi_moderatore";
 }

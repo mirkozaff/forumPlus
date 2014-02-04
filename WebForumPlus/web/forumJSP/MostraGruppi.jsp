@@ -43,9 +43,9 @@
                 <div class="contenitore-azzurro centraverticale">
                     <table class="table">
                         <tr class="sfondotr text-center">
-                            <td colspan="3">
+                           
                                 <h2>Gruppi a cui sei iscritto</h2>
-                            </td>
+                         
                         </tr>
                         <tr>
                             <td>
@@ -73,12 +73,13 @@
                             </tr>
                         </c:forEach>
                     </table>
-                    
+                </div>
+                    <div class="contenitore-azzurro centraverticale">
                     <table class="table">
                         <tr class="sfondotr text-center">
-                            <td colspan="3">
+                         
                                 <h2>Gruppi pubblici</h2>
-                            </td>
+                            
                         </tr>
                         <tr>
                             <td>

@@ -212,7 +212,11 @@ public class ControllerWeb extends HttpServlet {
 
             forward(request, response, "/forumJSP/MostraGruppi.jsp");
             return;
-        }        
+        }
+        if(Variabili.MOSTRAGRUPPIMODERATORE.equals(op)){
+            forward(request, response, "/forumJSP/ModeratorTable.jsp");
+            return;
+        }
 
     }
 
