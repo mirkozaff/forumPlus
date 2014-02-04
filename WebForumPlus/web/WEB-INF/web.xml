@@ -61,6 +61,15 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>ServletChiudiGruppo</servlet-name>
+        <servlet-class>servlet_package.ServletChiudiGruppo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletChiudiGruppo</servlet-name>
+        <url-pattern>/ServletChiudiGruppo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>ServletUpload</servlet-name>
         <servlet-class>servlet_package.ServletUpload</servlet-class>
     </servlet>

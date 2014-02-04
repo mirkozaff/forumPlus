@@ -193,17 +193,26 @@ public class ControllerWeb extends HttpServlet {
             forward(request, response, "/ServletLoadTable");
             return;
         }
+        if("chiudigruppo".equals(op)){
+            
+            String gname = request.getParameter(Variabili.GNAME);
+            String gadmin = request.getParameter(Variabili.GADMIN);
+            
+            request.setAttribute("gname", gname);
+            request.setAttribute("gadmin", gadmin);
+            
+            forward(request, response, "/ServletChiudiGruppo");
+            return;
+        }
 
         if(Variabili.MOSTRAGRUPPILOGGATO.equals(op)){
     
-        ArrayList listagruppipubblici = new ArrayList();
-    ArrayList listaadminpubblici = new ArrayList();
-    manager.listaGruppiPubblici(listagruppipubblici, listaadminpubblici);
-    request.setAttribute("listagruppipubblici", listagruppipubblici);
-    request.setAttribute("listaadminpubblici", listaadminpubblici);
+            ArrayList listagruppipubblici = new ArrayList();
+            ArrayList listaadminpubblici = new ArrayList();
+            manager.listaGruppiPubblici(listagruppipubblici, listaadminpubblici);
+            request.setAttribute("listagruppipubblici", listagruppipubblici);
+            request.setAttribute("listaadminpubblici", listaadminpubblici);
     
-
-
             ArrayList listagruppi = new ArrayList();
             ArrayList listaadmin = new ArrayList();
             manager.listagruppi(user.getUsername(), listagruppi, listaadmin);
@@ -214,6 +223,7 @@ public class ControllerWeb extends HttpServlet {
             return;
         }
         if(Variabili.MOSTRAGRUPPIMODERATORE.equals(op)){
+            System.out.println("moderator table");
             forward(request, response, "/forumJSP/ModeratorTable.jsp");
             return;
         }

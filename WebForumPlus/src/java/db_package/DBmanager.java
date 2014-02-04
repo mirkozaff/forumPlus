@@ -431,6 +431,24 @@ public class DBmanager implements Serializable{
              stm.close();
          }
      }
+     
+     public void chiudiDiscussione(String utente_postante,String gname,String gadmin,String data) throws SQLException{
+         
+         //creo un record nella tabella post con il nuovo post creato
+         PreparedStatement stm = con.prepareStatement("INSERT INTO post(POST,UTENTE_POSTANTE,GNAME,GADMIN,DATA) VALUES (?,?,?,?,?)");
+         PreparedStatement stm2 = con.prepareStatement("UPDATE gruppi SET CLOSED=true WHERE GNAME=? AND GADMIN=?");
+         try{
+             stm.setString(1, "Gruppo chiuso.  [MODERATORE]");
+             stm.setString(2, utente_postante);
+             stm.setString(3, gname);
+             stm.setString(4, gadmin);
+             stm.setString(5, data);
+             stm.execute();
+             stm2.execute();
+         }finally{
+             stm.close();
+         }
+     }
      public void aggiornarecordinviti(String gname, String utente,String gadmin, String bottone) throws SQLException{
          
          
