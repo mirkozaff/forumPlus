@@ -80,6 +80,25 @@ public class DBmanager implements Serializable{
         }
    }
     
+        public void listagruppiModeratore(ArrayList<String> listagruppi, ArrayList<String> listaadmin ) throws SQLException{
+         
+         // trovo i gruppi a cui l'utente è iscritto o di cui è amministratore
+        PreparedStatement stm = con.prepareStatement("SELECT DISTINCT GNAME,GADMIN FROM gruppi");
+        try{
+            ResultSet rs = stm.executeQuery();
+            try{
+            while(rs.next()){
+                listagruppi.add(rs.getString("GNAME"));
+                listaadmin.add(rs.getString("GADMIN"));
+            }
+            } finally {
+            rs.close();
+            }
+        }finally {
+         stm.close();
+        }
+   }
+    
     public void listaGruppiPubblici(ArrayList<String> listagruppi, ArrayList<String> listaadmin ) throws SQLException{
         
         PreparedStatement stm = con.prepareStatement("SELECT DISTINCT GNAME,GADMIN FROM gruppi where PUBBLICO=true");
@@ -509,6 +528,27 @@ public class DBmanager implements Serializable{
          stm.close();
         } 
         return utentiPartecipanti;
+     }
+     
+    public int getNumeroUtentiPartecipanti(String gname, String gadmin)throws SQLException{
+        
+        int count= 0;
+        PreparedStatement stm = con.prepareStatement("SELECT * FROM gruppi WHERE gname= ? AND gadmin = ? AND INVITATO=false");
+        try{
+            stm.setString(1, gname);
+            stm.setString(2, gadmin);
+            ResultSet rs = stm.executeQuery();
+            try{
+                while(rs.next()){
+                    count++;
+                }
+            } finally {
+            rs.close();
+            }
+        }finally {
+         stm.close();
+        } 
+        return count;
      }
      
      public int numeroPostPDF(String gname, String gadmin)throws SQLException{

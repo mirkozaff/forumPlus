@@ -25,6 +25,15 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>ServletLoadTable</servlet-name>
+        <servlet-class>servlet_package.ServletLoadTable</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletLoadTable</servlet-name>
+        <url-pattern>/ServletLoadTable</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>ServletLogout</servlet-name>
         <servlet-class>servlet_package.ServletLogout</servlet-class>
     </servlet>
