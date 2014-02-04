@@ -184,6 +184,10 @@ public class ControllerWeb extends HttpServlet {
             forward(request, response, "/forumJSP/VisualizzaPost.jsp");
             return;
         }
+        if(Variabili.JSON.equals(op)){
+            forward(request, response, "/ServletLoadTable");
+            return;
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
