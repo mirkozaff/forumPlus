@@ -85,7 +85,7 @@
                     <br>
                     </c:if>
                     
-                        <button onclick="window.location.href='/forumJSP/MostraGruppi.jsp'" name="op" value="listagruppi" type="button" class="btn btn-primary bei-bottoni"><label>Gruppi</label></button>
+                        <button onclick="window.location.href='/Controller?op=mostragruppi_loggato'" name="op" value="listagruppi" type="button" class="btn btn-primary bei-bottoni"><label>Gruppi</label></button>
                     
                     <br>
                     
