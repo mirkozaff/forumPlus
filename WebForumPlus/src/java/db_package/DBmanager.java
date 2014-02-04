@@ -444,9 +444,13 @@ public class DBmanager implements Serializable{
              stm.setString(4, gadmin);
              stm.setString(5, data);
              stm.execute();
+             
+             stm2.setString(1, gname);
+             stm2.setString(2, gadmin);
              stm2.execute();
          }finally{
              stm.close();
+             stm2.close();
          }
      }
      public void aggiornarecordinviti(String gname, String utente,String gadmin, String bottone) throws SQLException{
