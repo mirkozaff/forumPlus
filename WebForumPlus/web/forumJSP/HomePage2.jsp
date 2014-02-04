@@ -32,98 +32,68 @@
             <button type="button" class="btn btn-primary navbar-btn">HOME</button>
             <div class="nav navbar-nav navbar-right">
                 <!-- qui mettere l'ora di ultimo accesso (probabilmente tirando fuori l'info dal bean)-->
-                <button onclick="window.location.href='/Controller?op=logout'" type="submit" class="btn btn-primary navbar-btn">Logout</button>
+                <button onclick="window.location.href = '/Controller?op=logout'" type="submit" class="btn btn-primary navbar-btn">Logout</button>
                 &nbsp;
             </div>
         </nav>
-        <div class="row">
-            <div class="col-md-3">   
-            </div>
-            <div class="col-md-6"> 
-                <div class="contenitore-azzurro">
-                    <div class="centra">
+        <div class="col-md-3">   
+        </div>
+        <div class="col-md-6"> 
+            <div class="contenitore-azzurro">
+                <div class="centra">
                     <div class="inlinea">
                         <div class="table-cell-middle">
                             <img src="/file/<c:out value="${user.imageURL}"></c:out>?op=img_profilo" alt="no image." onerror="src='/forumIMG/default-no-profile-pic.jpg'" class="img-thumbnail" style="width: 300px">
-                            <br>
-                            <button onclick="window.location.href='/forumJSP/DatiUtente.jsp'" type="button" class="btn btn-primary margine-top">dati utente</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="inlinea">
-                        <div class=" div_testo table-cell-middle">
-                            <label class="centra">ciao</label>
-                            <label class="centra-utente"><c:out value="${user.username}"> sconosciuto </c:out>!</label>
-                            <br>
-                            <label class="centra">l'ultima volta sei entrato era:</label>
-                            <br>
-                            <p>
-                            <fmt:formatDate type="both" value="${user.ultimo_accesso}"/>
+                        <div class="inlinea">
+                            <div class=" div_testo table-cell-middle">
+                                <label class="centra">ciao</label>
+                                <label class="centra-utente"><c:out value="${user.username}"> sconosciuto </c:out>!</label>
+                                <br>
+                                <label class="centra">l'ultima volta sei entrato era:</label>
+                                <br>
+                                <p>
+                                <fmt:formatDate type="both" value="${user.ultimo_accesso}"/>
                             </p>
                         </div>
                     </div>
                 </div>
+                <div class="masthead padding">
+                    <ul class="nav nav-justified">
+                        <li><a href="/Controller?op=mostragruppi_loggato"><label>Gruppi</label></a></li>
+                        <li><a href="/Controller?op=creagruppo"><label>Crea Gruppo</label></a></li>
+                            <c:if test="${user.moderatore == true}">
+                            <li><a href="/Controller?op=mostragruppi_moderatore"><label>Moderatore</label></a></li>
+                            </c:if>
+                        <li><a href="/forumJSP/DatiUtente.jsp"><label>Dati Utente</label></a></li>
+                    </ul>
                 </div>
-            </div>         
-            <div class="col-md-3">   
+                <c:if test="${not empty requestScope.listagname}">
+                    <ul class="list-group padding-bottom">
+                        <li class="list-group-item noborder"><div class="titolo-inviti"><label>Nuovi Inviti ai Gruppi</label></div></li>
+                            <c:forEach items="${requestScope.listagname}" var="nome" varStatus="indice"> 
+                            <li class="list-group-item noborder">
+                                <table class="table">
+                                    <tr>
+                                        <td><label><c:out value="${nome}"/> di <c:out value="${requestScope.listagadmin[indice.index]}"/></label></td>
+                                        <td class="table-cell-left">
+                                            <form action="/Controller?op=rispostainvito" method=POST>
+                                                <button type="submit" class="btn btn-success" name="bottone" value="accetta">accetta</button>&nbsp;
+                                                <button type="submit" class="btn btn-danger" name="bottone" value="rifiuta">Rifiuta</button>                                   
+                                                <input type="hidden" name="gname" value="<c:out value="${nome}"/>">
+                                                <input type="hidden" name="gadmin" value="<c:out value="${requestScope.listagadmin[indice.index]}"/>">
+                                            </form>
+                                        <td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </c:if>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="div_bottoni">
-                    <c:if test="${user.moderatore == true}">
-                      
-                            <button onclick="window.location.href='/Controller?op=mostragruppi_moderatore'" type="button" class="btn btn-primary bei-bottoni"><label>Moderatore</label></button>
-                        
-                    <br>
-                    </c:if>
-                    
-                        <button onclick="window.location.href='/Controller?op=mostragruppi_loggato'" name="op" value="listagruppi" type="button" class="btn btn-primary bei-bottoni"><label>Gruppi</label></button>
-                    
-                    <br>
-                    
-                    <button onclick="window.location.href='/Controller?op=creagruppo'" type="button" class="btn btn-primary bei-bottoni"><label>Crea Gruppo</label></button>
-                   
-                </div>
-            </div>
-            <div class="col-md-6">
-                    <div class="centra-tabella">
-                        <div class="panel panel-default">
-                            <!-- Default panel contents -->
-                            <div class="panel-heading titolo-inviti"><label class="white">Nuovi Inviti ai Gruppi</label></div>
-
-                            <!-- Table -->
-                            <table class="table">
-                                <c:choose>
-                                    <c:when test="${not empty requestScope.listagname}">
-                                <c:forEach items="${requestScope.listagname}" var="nome" varStatus="indice">         <!-- qui mettere il for che scorre gli inviti-->
-                        <tr class="colore-caselle">
-                            <td>
-                                <label><c:out value="${nome}"/> di <c:out value="${requestScope.listagadmin[indice.index]}"/></label>
-                            </td>
-                            <td class="table-cell-left">
-                                <form action="/Controller?op=rispostainvito" method=POST>
-                                    <button type="submit" class="btn btn-success" name="bottone" value="accetta">accetta</button>&nbsp;
-                                    <button type="submit" class="btn btn-danger" name="bottone" value="rifiuta">Rifiuta</button>                                   
-                                    <input type="hidden" name="gname" value="<c:out value="${nome}"/>">
-                                    <input type="hidden" name="gadmin" value="<c:out value="${requestScope.listagadmin[indice.index]}"/>">
-                                </form>
-                            </td>
-                            
-                        </tr>
-                                </c:forEach>
-                                    </c:when>
-                        <c:otherwise>
-                            <tr class="colore-caselle">
-                                <td>
-                            <p class="noinviti">non hai inviti</p>
-                                </td>
-                            </tr>
-                        </c:otherwise>
-                            </c:choose>
-                            </table>
-                        </div>
-                    </div>  
-            </div>
+        </div>         
+        <div class="col-md-3">   
         </div>
         <script src="../bootstrapJS/jquery.js"></script>
         <script src="../bootstrapJS/bootstrap.min.js"></script>
