@@ -234,6 +234,25 @@ public class DBmanager implements Serializable{
         return false;
     }
     
+    public Boolean getGroupStatus(String gname, String gadmin) throws SQLException{
+        PreparedStatement stm = con.prepareStatement("SELECT CLOSED FROM Gruppi WHERE GNAME=? AND GADMIN=?");
+        try{
+            stm.setString(1, gname);
+            stm.setString(2, gadmin);
+            ResultSet rs = stm.executeQuery();
+            try{
+                while(rs.next()){
+                    return rs.getBoolean(1);
+                }
+            }finally {
+                rs.close();
+            }
+        }finally {
+         stm.close();
+        }  
+        return false;
+    }
+    
     public void setImageURL(String name, String imgURL, HttpSession session) throws SQLException{
         PreparedStatement stm = con.prepareStatement("UPDATE utenti SET URL_IMAGE= ? WHERE NAME= ?");
         
