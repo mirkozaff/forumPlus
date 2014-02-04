@@ -67,6 +67,7 @@ public class ServletLoadTable extends HttpServlet {
                                             "<input class=\"btn btn-lg btn-success\" type=\"submit\" value=\"Entra\">" +
                                             "<input type=\"hidden\" name=\"gname\" value=\""+gname+"\">" +
                                             "<input type=\"hidden\" name=\"gadmin\" value=\""+gadmin+"\">" +
+                                            "<input type=\"hidden\" name=\"bottone\" value=\"entra_moderatore\">" +  
                                             "</form>").replace("\"", "\\\"");
                 
                 pw.append("[\"").append(gname).append("\",");

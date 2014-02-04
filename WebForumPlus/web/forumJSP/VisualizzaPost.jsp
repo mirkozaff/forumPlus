@@ -30,7 +30,7 @@
     </head>
     <body>
         <c:choose>
-            <c:when test="${(user.username != null) && (user.moderatore == false) && (gruppo.pubblico || gruppo.inscritto)}">
+            <c:when test="${(user.username != null) && (bottone == false)}">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="nav navbar-nav">
                 &nbsp;
@@ -45,13 +45,13 @@
             </div>
         </nav>
             </c:when>
-            <c:when test="${(user.username != null) && (user.moderatore) && (gruppo.pubblico == false) && (gruppo.inscritto == false)}">
+            <c:when test="${(user.username != null) && (bottone == true)}">
                 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="nav navbar-nav">
                 &nbsp;
                 <button onclick="window.location.href = '/forumJSP/HomePage2.jsp'" type="button" class="btn btn-primary navbar-btn">HOME</button>
 
-                <button onclick="window.location.href = '/forumJSP/MostraGruppi.jsp'" type="button" class="btn btn-primary navbar-btn">Torna ai gruppi del moderatore</button>
+                <button onclick="window.location.href = '/Controller?op=mostragruppi_moderatore'" type="button" class="btn btn-primary navbar-btn">Torna ai gruppi del moderatore</button>
 
             </div>    
             <div class="nav navbar-nav navbar-right">

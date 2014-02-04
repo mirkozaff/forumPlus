@@ -173,18 +173,25 @@ public class ControllerWeb extends HttpServlet {
         if(Variabili.VISUALIZZAPOST.equals(op)){
             String gname = request.getParameter(Variabili.GNAME);
             String gadmin = request.getParameter(Variabili.GADMIN);
-            String bottone = request.getParameter(Variabili.OP);
+            String bottone = request.getParameter(Variabili.BOTTONE);
             ArrayList<Post> listapost = new ArrayList<Post>();
             Gruppo gruppo;
+            boolean entrato_come_moderatore = false;
        
             manager.getpost(gname, gadmin, listapost);
             gruppo = manager.getGroupInfo(gname, gadmin, user.getUsername());
+            
+            if(bottone != null){
+            if(bottone.equals("entra_moderatore")){
+                entrato_come_moderatore = true;
+            }
+            }
             
             request.setAttribute("gruppo", gruppo);
             request.setAttribute("listapost", listapost);
             request.setAttribute("gname", gname);
             request.setAttribute("gadmin", gadmin);
-            request.setAttribute("bottone", op);
+            request.setAttribute("bottone", entrato_come_moderatore);
             forward(request, response, "/forumJSP/VisualizzaPost.jsp");
             return;
         }
