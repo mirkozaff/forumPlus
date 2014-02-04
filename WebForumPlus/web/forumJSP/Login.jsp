@@ -42,6 +42,10 @@
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
+        <form class="form-signin" action="/Controller" method="POST">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Gruppi Pubblici</button>
+            <input type="hidden" name="op" value="gruppi_pubblici">
+        </form>
         <form action="/forumJSP/Registrazione.jsp" class="form-signin" method="POST">
             <label>Se non sei gia registrato</label>
             <button class="btn btn-lg btn-success btn-block" type="submit">Registrati</button>

@@ -62,6 +62,15 @@
             </c:when>
             <c:otherwise>
                 <%-- caso non loggato--%>
+                <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="nav navbar-nav">
+                &nbsp;
+                <button onclick="window.location.href = '/forumJSP/Login.jsp'" type="button" class="btn btn-primary navbar-btn">Login</button>
+
+                <button onclick="window.location.href = '/Controller?op=gruppi_pubblici'" type="button" class="btn btn-primary navbar-btn">Torna ai gruppi pubblici</button>
+
+            </div>    
+        </nav>
             </c:otherwise>
         </c:choose>
         <c:if test="${(user.username != null) && (gruppo.closed == false) && (gruppo.inscritto)}">
