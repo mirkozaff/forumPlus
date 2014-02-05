@@ -55,7 +55,7 @@ public class ControllerWeb extends HttpServlet {
             forward(request, response, "/ServletSendMail");
             return;
         }
-                if(Variabili.GRUPPIPUBBLICI.equals(op)){
+        if(Variabili.GRUPPIPUBBLICI.equals(op)){
            forward(request, response, "/forumJSP/MostraGruppiPubblici.jsp");
             return; 
         }
