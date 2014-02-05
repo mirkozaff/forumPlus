@@ -77,10 +77,10 @@ public class ControllerWeb extends HttpServlet {
                 
                 ArrayList listagname = new ArrayList();
                 ArrayList listagadmin = new ArrayList();
-        //chiedo se ci sono inviti per l'utente
-        manager.getinviti(Functions.getUserName(request),listagname, listagadmin);
-        request.setAttribute("listagname", listagname);
-        request.setAttribute("listagadmin", listagadmin);
+                //chiedo se ci sono inviti per l'utente
+                manager.getinviti(Functions.getUserName(request),listagname, listagadmin);
+                request.setAttribute("listagname", listagname);
+                request.setAttribute("listagadmin", listagadmin);
                 forward(request,response, "/forumJSP/HomePage2.jsp");
             }else{
                 boolean LoginFail = true;
@@ -89,13 +89,13 @@ public class ControllerWeb extends HttpServlet {
             }
             return;
          }
-                if(Variabili.HOME.equals(op)){
-                                    ArrayList listagname = new ArrayList();
-                ArrayList listagadmin = new ArrayList();
-        //chiedo se ci sono inviti per l'utente
-        manager.getinviti(Functions.getUserName(request),listagname, listagadmin);
-        request.setAttribute("listagname", listagname);
-        request.setAttribute("listagadmin", listagadmin);
+        if(Variabili.HOME.equals(op)){
+            ArrayList listagname = new ArrayList();
+            ArrayList listagadmin = new ArrayList();
+            //chiedo se ci sono inviti per l'utente
+            manager.getinviti(Functions.getUserName(request),listagname, listagadmin);
+            request.setAttribute("listagname", listagname);
+            request.setAttribute("listagadmin", listagadmin);
             forward(request, response, "/forumJSP/HomePage2.jsp");
             return;
         }
