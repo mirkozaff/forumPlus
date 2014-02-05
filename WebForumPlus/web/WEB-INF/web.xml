@@ -80,6 +80,7 @@
         <servlet-name>ServletUpload</servlet-name>
         <url-pattern>/ServletUpload</url-pattern>
     </servlet-mapping>
+    
     <servlet>
         <servlet-name>ServletPDF</servlet-name>
         <servlet-class>servlet_package.ServletPDF</servlet-class>
@@ -89,6 +90,7 @@
         <url-pattern>/ServletPDF</url-pattern>
     </servlet-mapping>
     <servlet>
+        
         <servlet-name>ServletSendMail</servlet-name>
         <servlet-class>servlet_package.ServletSendMail</servlet-class>
     </servlet>
