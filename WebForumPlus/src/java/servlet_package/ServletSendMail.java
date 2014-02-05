@@ -40,6 +40,7 @@ public class ServletSendMail extends HttpServlet {
     public void inviaMailRecupero(HttpServletRequest request, HttpServletResponse response, String mailto, String username)
         throws ServletException, IOException, SQLException, AddressException, MessagingException{
         
+        
         Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 
         final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
@@ -73,7 +74,7 @@ public class ServletSendMail extends HttpServlet {
         msg.setSentDate(new Date());
 
         Transport.send(msg);
-    }
+        }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, AddressException, MessagingException {
@@ -86,8 +87,18 @@ public class ServletSendMail extends HttpServlet {
             RequestDispatcher rd = sc.getRequestDispatcher("/forumJSP/Login.jsp"); 
             rd.forward(request,response);
         }else{
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            boolean errorenelrecupero = true;
+            request.setAttribute("errorenelrecupero", errorenelrecupero);
+            forward(request, response, "/forumJSP/RecuperoPass.jsp");
+            
         }
+    }
+        private void forward(HttpServletRequest request, HttpServletResponse response, String page)
+            throws ServletException, IOException {
+        
+        ServletContext sc = getServletContext(); 
+        RequestDispatcher rd = sc.getRequestDispatcher(page); 
+        rd.forward(request,response);
     }
 
 

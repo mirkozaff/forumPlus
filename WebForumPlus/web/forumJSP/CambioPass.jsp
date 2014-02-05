@@ -1,3 +1,4 @@
+<%@ page errorPage = "/forumJSP/PaginaErrore.jsp" %>
 <jsp:useBean id="user" scope="session" class="utility_package.User"/>
 <!DOCTYPE html>
 <head>

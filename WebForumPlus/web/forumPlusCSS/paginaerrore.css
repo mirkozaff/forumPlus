@@ -1,8 +1,18 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28-gen-2014, 16.24.01
+    Author     : giovanni
+*/
+
 body {
   padding-top: 40px;
-  padding-bottom: 40px; 
-  background-image: url(../forumIMG/waterfall-wallpaper-desktop.jpg);
-
+  padding-bottom: 40px;
+  background-color: #eee;
+  background-image: url(../forumIMG/22-sfondo-multicolori.jpg);
 }
 
 .form-signin {
@@ -39,6 +49,27 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-.centra-titolo {
-    text-align: center;
+
+.navbar-default{
+ background-color: #b3d0e9;
+}
+
+.centraverticale {
+    margin-top: 10%;
+}
+
+.centra {
+    text-align:center;
+}
+
+.background-img {
+    background-color: white;
+}
+.contenitore-azzurro {
+    border-radius: 20px;
+    background-color: #b3d0e9;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
 }

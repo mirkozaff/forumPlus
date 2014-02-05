@@ -3,6 +3,7 @@
     Created on : 24-gen-2014, 17.33.01
     Author     : giovanni
 --%>
+<%@ page errorPage = "/forumJSP/PaginaErrore.jsp" %>
 <jsp:useBean id="user" scope="session" class="utility_package.User"/>
 <!DOCTYPE html>
 <head>

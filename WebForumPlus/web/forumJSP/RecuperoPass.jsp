@@ -1,3 +1,5 @@
+<%@page errorPage = "/forumJSP/PaginaErrore.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -20,12 +22,17 @@
     <div class="container">
       <form action="/Controller" class="form-signin" name="Mioform" method="POST">
         <h2 class="titolo">Recupero Password</h2>
+         <c:if test="${requestScope.errorenelrecupero == true}">
+            <label style="color: red">Nome utente o Email errati</label> 
+        </c:if>
+            <br>    
         <label>Nome utente</label>
         <input name="username" type="text" class="form-control" placeholder="Username" required autofocus>
         <label>Email</label>
         <input name="mailto" type="text" class="form-control" placeholder="Email" required>
         <input type="hidden" name="op" value="recupero">
         <button class="btn btn-lg btn-success btn-block margine-top-alto" type="submit">Invia</button>
+        <button onclick="window.location.href = '/forumJSP/Login.jsp'" class="btn btn-lg btn-success btn-block" type="submit">Torna al Login</button>
       </form>
 
     </div> <!-- /container -->
