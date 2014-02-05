@@ -3,7 +3,7 @@
     Created on : 27-gen-2014, 10.02.49
     Author     : giovanni
 --%>
-
+<%@ page errorPage = "/forumJSP/PaginaErrore.jsp" %>
 <%@page import="utility_package.Functions"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

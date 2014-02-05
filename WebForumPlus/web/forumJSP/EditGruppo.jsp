@@ -3,6 +3,7 @@
     Created on : 28-gen-2014, 9.13.36
     Author     : giovanni
 --%>
+<%@ page errorPage = "/forumJSP/PaginaErrore.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 

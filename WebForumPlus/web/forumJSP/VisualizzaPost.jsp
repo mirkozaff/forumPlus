@@ -3,6 +3,7 @@
     Created on : 29-gen-2014, 13.51.12
     Author     : giovanni
 --%>
+<%@ page errorPage = "/forumJSP/PaginaErrore.jsp" %>
 <%@page import="utility_package.Post"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Scanner"%>

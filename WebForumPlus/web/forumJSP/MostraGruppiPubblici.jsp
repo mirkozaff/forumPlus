@@ -1,3 +1,4 @@
+<%@ page errorPage = "/forumJSP/PaginaErrore.jsp" %>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -40,7 +41,7 @@
                     <table class="table">
                         <tr class="sfondotr text-center">
                             <td colspan="3">
-                                <h2>Gruppi a cui sei iscritto</h2>
+                                <h2>Gruppi Pubblici</h2>
                             </td>
                         </tr>
                         <tr>
