@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="masthead padding">
-                    <ul class="nav nav-justified">
+                    <ul class="nav nav-justified" style="background-color: white">
                         <li><a href="/Controller?op=mostragruppi_loggato"><label>Gruppi</label></a></li>
                         <li><a href="/Controller?op=creagruppo"><label>Crea Gruppo</label></a></li>
                             <c:if test="${user.moderatore == true}">
