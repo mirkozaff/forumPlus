@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="user" scope="session" class="utility_package.User"/>
 <jsp:useBean id="manager" scope="session" class="db_package.DBmanager"/>
 
 <!DOCTYPE html>
