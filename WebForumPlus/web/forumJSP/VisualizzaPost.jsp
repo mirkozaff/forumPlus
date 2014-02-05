@@ -120,11 +120,11 @@
                         <button type="submit" class="btn btn-success navbar-btn">edita gruppo</button>&nbsp;
                         <input type="hidden" name="gname" value="<c:out value="${requestScope.gname}"></c:out>"/>
                         <input type="hidden" name="gadmin" value="<c:out value="${requestScope.gadmin}"></c:out>"/>
-                            <button type="submin" class="btn btn-success navbar-btn" formaction="servletPDF">pdf del gruppo</button>
+                            <button type="submin" class="btn btn-success navbar-btn" formaction="ServletPDF">pdf del gruppo</button>
                         </form>
                 </c:if>
                 <c:if test="${(requestScope.gadmin == user.username) && (gruppo.closed)}">
-                     <form action="servletPDF" method=POST>
+                     <form action="ServletPDF" method=POST>
                         <input type="hidden" name="gname" value="<c:out value="${requestScope.gname}"></c:out>"/>
                         <input type="hidden" name="gadmin" value="<c:out value="${requestScope.gadmin}"></c:out>"/>
                             <button type="submin" class="btn btn-success navbar-btn">pdf del gruppo</button>
