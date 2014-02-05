@@ -82,6 +82,10 @@ public class ControllerWeb extends HttpServlet {
         request.setAttribute("listagname", listagname);
         request.setAttribute("listagadmin", listagadmin);
                 forward(request,response, "/forumJSP/HomePage2.jsp");
+            }else{
+                boolean LoginFail = true;
+                request.setAttribute("LoginFail", LoginFail);
+              forward(request,response,"/forumJSP/Login.jsp");  
             }
             return;
          }

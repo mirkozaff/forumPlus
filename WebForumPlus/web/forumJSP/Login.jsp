@@ -3,6 +3,7 @@
     Created on : 24-gen-2014, 16.50.18
     Author     : giovanni
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -35,6 +36,9 @@
       <form class="form-signin" action="/Controller" method="POST" name="dati">
         <input type="hidden" name="op" value="login">
         <h2 class="form-signin-heading centra-titolo">Login</h2>
+        <c:if test="${requestScope.LoginFail == true}">
+            <label style="color: red">username o password errati</label> 
+        </c:if>
         <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
         <input type="password" name="password" class="form-control" placeholder="Password" required>
         <label>
