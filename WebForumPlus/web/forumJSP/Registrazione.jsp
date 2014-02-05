@@ -38,6 +38,7 @@
         <input name="pass2" type="password" class="form-control" placeholder="Password" required>  
         <input type="hidden" name="op" value="registrazione">
         <button class="btn btn-lg btn-success btn-block margine-top-alto" type="submit">Registrati</button>
+        <button onclick="window.location.href = '/forumJSP/Login.jsp'" class="btn btn-lg btn-success btn-block" type="button">Torna al Login</button>
       </form>
 
     </div> <!-- /container -->

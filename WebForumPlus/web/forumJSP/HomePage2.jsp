@@ -11,7 +11,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="user" scope="session" class="utility_package.User"/>
 <jsp:useBean id="manager" scope="session" class="db_package.DBmanager"/>
-
+<%
+  ArrayList listagname = new ArrayList();
+                ArrayList listagadmin = new ArrayList();
+                //chiedo se ci sono inviti per l'utente
+                manager.getinviti(Functions.getUserName(request), listagname, listagadmin);
+                request.setAttribute("listagname", listagname);
+                request.setAttribute("listagadmin", listagadmin);  
+    %>
 <!DOCTYPE html>
 <html lang="en">
     <head>

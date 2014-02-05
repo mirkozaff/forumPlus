@@ -32,7 +32,7 @@
         <input name="mailto" type="text" class="form-control" placeholder="Email" required>
         <input type="hidden" name="op" value="recupero">
         <button class="btn btn-lg btn-success btn-block margine-top-alto" type="submit">Invia</button>
-        <button onclick="window.location.href = '/forumJSP/Login.jsp'" class="btn btn-lg btn-success btn-block" type="submit">Torna al Login</button>
+        <button onclick="window.location.href = '/forumJSP/Login.jsp'" class="btn btn-lg btn-success btn-block" type="button">Torna al Login</button>
       </form>
 
     </div> <!-- /container -->

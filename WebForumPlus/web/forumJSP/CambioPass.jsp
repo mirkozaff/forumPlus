@@ -30,6 +30,7 @@
         <input name="pass2" type="password" class="form-control" placeholder="Nuova Password" required>  
         <input type="hidden" name="op" value="cambio_pass">
         <button class="btn btn-lg btn-success btn-block margine-top-alto" type="submit">Cambia</button>
+        <button onclick="window.location.href = '/forumJSP/DatiUtente.jsp'" class="btn btn-lg btn-success btn-block" type="submit">Torna ai dati utente</button>
       </form>
 
     </div> <!-- /container -->
